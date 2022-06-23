@@ -1,10 +1,20 @@
+@media screen and (max-width: 1170px) {
+    .menu {
+        width: 60%;
+        display: none !important;
+        flex-direction: row;
+        /* display: flex; */
+        flex-wrap: wrap;
+    }
+}
+
 .menu-draf-all {
     width: 100%;
     align-items: center;
     justify-content: center;
     display: flex;
     margin-bottom: 20px;
-    background-color: black;
+    background-color: rgb(33, 93, 121);
 }
 
 .draf {
@@ -19,7 +29,7 @@
 
 .menu {
     width: 60%;
-
+    /* display: none; */
     flex-direction: row;
     display: flex;
     flex-wrap: wrap;
@@ -42,4 +52,14 @@
     align-items: center;
     justify-content: center;
 
+}
+
+.drawer {
+    display: none;
+}
+
+@media screen and (max-width: 1170px) {
+    .drawer {
+        display: flex;
+    }
 }

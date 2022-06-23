@@ -1,20 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     Image
 } from 'react-bootstrap';
 import { FiPhoneCall } from "react-icons/fi";
 import { MdEmail } from "react-icons/md";
 import './header.css';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { getDetail } from "../../redux/action";
+import axios from "axios";
+
 
 const Header = () => {
+
+    // const dispatch = useDispatch()
+
+    // const { detail } = useSelector(state => state.userReducer);
+
+    const [detail, setDetail] = useState(null)
+
+
+    useEffect(() => {
+        console.log('masuk')
+        axios.get("http://adminmesuji.embuncode.com/api/instansi/detail/20")
+            .then(function (response) {
+                setDetail(response.data)
+                // console.log(response.data);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+    }, []);
+
+
+
+
     return (
         <div className="header-all">
             <div className="sub-header">
-                <div>
-                    <Image src="https://upload.wikimedia.org/wikipedia/commons/4/43/LOGO_IPDN_2022.png"
-                        className="header-logo"
-                    />
-                </div>
+
+                {detail != null ? <Image src={detail.data.logo_instansi}
+                    className="header-logo"
+                /> : <p>hallo</p>}
+
 
                 <div className="contac">
                     <div className="telepon">
@@ -24,7 +52,8 @@ const Header = () => {
 
                         <div className="text-header">
                             <article className="title-contact">Call us ?</article>
-                            <article className="info-contact">+62812812812</article>
+                            {detail != null ? <article className="info-contact">{detail.data.nomor_telepon}</article> : <p>hallo</p>}
+                            {/* <article className="info-contact">{detail.data.nomor_telepon}</article> */}
                         </div>
                     </div>
                     <div className="email">
@@ -35,7 +64,8 @@ const Header = () => {
 
                         <div className="text-header">
                             <article className="title-contact">E-Mail us ?</article>
-                            <article className="info-contact">ouremail@gmail.com</article>
+                            {detail != null ? <article className="info-contact">{detail.data.email}</article> : <p>hallo</p>}
+                            {/* <article className="info-contact">{detail.data.email}</article> */}
                         </div>
 
                     </div>

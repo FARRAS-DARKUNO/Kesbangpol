@@ -1,17 +1,25 @@
 import React from "react";
-import {
-    Button,
-} from 'react-bootstrap';
+import { Image } from '@chakra-ui/react'
 
-import Header from "../Componen/header/header";
-import MenuDraf from "../Componen/menuDraf/menuDraf";
+import '../style/mainPage.css'
+
+
+import CardArticle from "../Componen/cardArticle/cardArticle";
 
 const MainPage = () => {
     return (
-        <div>
-            <MenuDraf />
-            <Header />
 
+        <div className="layout">
+            <div className="margin ">
+                <Image src='https://bit.ly/dan-abramov' alt='Dan Abramov' cliassName="image-deerah" />
+            </div>
+            <div className="article">
+                <article className="title-article">
+                    Artickel
+                </article>
+                <CardArticle />
+
+            </div>
         </div>
 
     );
