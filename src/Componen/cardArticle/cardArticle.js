@@ -14,23 +14,26 @@ const CardArticle = () => {
     useEffect(() => {
         axios.get("http://adminmesuji.embuncode.com/api/news?instansi_id=2")
             .then(function (response) {
-                getNewsCard(response.data.data.data)
-                // console.log(response.data.data.data);
+                var temp = []
+                for (let i = 0; i < 4; i += 1) {
+                    if (i < response.data.data.data.length) {
+                        temp.push(response.data.data.data[i])
+                    }
+                }
+                getNewsCard(temp)
+                console.log(response.data.data.data[0]);
             })
             .catch(function (error) {
                 // handle error
                 console.log(error);
             })
-
-
-
     }, []);
 
     return (
         <div className="all">
             <div className="grip-article">
 
-                {newsCard.map((placement) => (
+                {newsCard != null ? newsCard.map((placement) => (
 
                     <Card style={{ width: '20rem' }} className='card' >
                         <Card.Img variant="top" src={placement.image_file_data} className="image" />
@@ -41,7 +44,7 @@ const CardArticle = () => {
                         </Card.Body>
                     </Card>
 
-                ))}
+                )) : <p>Loading</p>}
 
 
             </div>

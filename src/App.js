@@ -13,6 +13,7 @@ import './App.css'
 
 import MenuDraf from './Componen/menuDraf/menuDraf';
 import Header from './Componen/header/header';
+import Footer from './Componen/footer/footer';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
 
             </Routes>
           </BrowserRouter>
+          <Footer />
         </div>
       </ChakraProvider>
     </Provider>
