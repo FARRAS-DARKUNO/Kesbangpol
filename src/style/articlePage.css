@@ -1,0 +1,99 @@
+.all-article-page {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+
+}
+
+.margin-article-page {
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
+    width: 70%;
+    border-radius: 20px;
+    margin-top: 30px;
+    flex-direction: row;
+
+    /* background-color: rgb(204, 204, 204); */
+}
+
+.main-article {
+    /* background-color: aqua; */
+    /* border-color: aqua; */
+    /* border-width: 1px; */
+    width: 65%;
+    /* height: 100px; */
+}
+
+.recomend-article {
+    /* background-color: rgb(209, 148, 35); */
+    border-radius: 10px;
+    border-width: 5px;
+    border-color: aqua;
+    width: 30%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.title-article-articlepage {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+
+.text-title-articlepage {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.image-article-articlepage {
+    width: 100%;
+    height: 400px;
+    background-color: blue;
+    margin-bottom: 20px;
+}
+
+.image-articlepage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.text-main-article-articlepage {
+    width: 100%;
+    padding: 20px;
+}
+
+.rekomendasi-baritalainnya-articlepage {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+.list-recomentation-articlepage {
+    width: 100%;
+    padding: 10px;
+    justify-content: space-between;
+    flex-direction: row;
+    display: flex;
+    background-color: rgb(250, 250, 250);
+    margin: 5px;
+}
+
+.title-list-recomendation-article {
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 5px;
+}

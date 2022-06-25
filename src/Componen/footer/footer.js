@@ -9,24 +9,6 @@ import axios from "axios";
 const Footer = () => {
 
 
-    // const [detail, setDetail] = useState(null)
-
-
-    // useEffect(() => {
-    //     console.log('masuk')
-    //     axios.get("http://adminmesuji.embuncode.com/api/instansi/detail/20")
-    //         .then(function (response) {
-    //             setDetail(response.data)
-    //             // console.log(response.data);
-    //         })
-    //         .catch(function (error) {
-    //             // handle error
-    //             console.log(error);
-    //         })
-    // }, []);
-
-
-
 
     const [FooterData, setFooterData] = useState([]);
     useEffect(() => {
