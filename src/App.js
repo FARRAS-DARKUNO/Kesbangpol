@@ -26,8 +26,8 @@ function App() {
 
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<MainPage />} />
-
+              {/* <Route path="/" element={<MainPage />} /> */}
+              <Route path="/" element={<NewsPage />} />
             </Routes>
           </BrowserRouter>
           <Footer />

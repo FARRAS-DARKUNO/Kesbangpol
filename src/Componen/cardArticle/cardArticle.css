@@ -1,4 +1,4 @@
-.image {
+.image-card {
     height: 200px;
     width: 100%;
     border-radius: 10px;
@@ -33,9 +33,10 @@
     margin-bottom: 10px;
 }
 
-.text {
+.text-card {
     white-space: nowrap;
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: black;
 }

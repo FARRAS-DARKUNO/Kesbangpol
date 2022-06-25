@@ -35,7 +35,7 @@ const CardAparat = () => {
                         <Card.Img variant="top" src={newsCard.foto_kepala} className="image" />
                         <Card.Body className="body-card">
                             <Card.Title className="title-card">{newsCard.nama_kepala}</Card.Title>
-                            <Card.Text className="text">Kepala</Card.Text>
+                            <Card.Text >Kepala</Card.Text>
 
                         </Card.Body>
                     </Card>
@@ -44,7 +44,7 @@ const CardAparat = () => {
                         <Card.Img variant="top" src={newsCard.foto_wakil_kepala} className="image" />
                         <Card.Body className="body-card">
                             <Card.Title className="title-card">{newsCard.nama_wakil_kepala}</Card.Title>
-                            <Card.Text className="text">Wakil Kepala</Card.Text>
+                            <Card.Text >Wakil Kepala</Card.Text>
 
                         </Card.Body>
                     </Card>
