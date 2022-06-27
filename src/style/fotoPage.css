@@ -1,0 +1,49 @@
+.all-galery-foto-page {
+    display: flex;
+    width: 100%;
+    /* height: 200px; */
+    flex: 1;
+    /* background-color: aqua; */
+    justify-content: center;
+    align-items: center;
+}
+
+.main-galery-foto-page {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    /* background-color: black; */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title-galery-foto-Page {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.galeri-card-foto {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* background-color: aqua; */
+}
+
+.margin-foto {
+    margin: 10px;
+    /* background-color: black; */
+}
+
+.isinya {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-direction: row;
+    /* background-color: aquamarine; */
+}
