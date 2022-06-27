@@ -8,44 +8,71 @@ import '../style/articlePage.css'
 const ArticlePage = () => {
 
     const [newsCard, getNewsCard] = useState(null)
+    const [articleMain, getArticleMain] = useState(null)
 
-
-
-    useEffect(() => {
-        axios.get("http://adminmesuji.embuncode.com/api/news?instansi_id=2")
+    const getRecomendation = async () => {
+        await axios.get("http://adminmesuji.embuncode.com/api/news?instansi_id=2")
             .then(function (response) {
                 getNewsCard(response.data.data.data)
-                console.log(response.data.data.data[0]);
+                // console.log(response.data.data.data[0]);
             })
             .catch(function (error) {
                 // handle error
                 console.log(error);
             })
+
+    }
+
+    const getArticleDetail = async () => {
+        await axios.get("http://adminmesuji.embuncode.com/api/news/2-contrary-to-popular-belief--lorem-ipsum-is-not-simply-random-text.-it-has-roots-in-a-piece-of-classical-latin-literature-from-45-bc")
+            .then(function (response) {
+                getArticleMain(response.data.data)
+                console.log('masuk')
+                console.log(response.data.data);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+
+    }
+
+    const innerHTMLCool = () => {
+        return { __html: articleMain.content };
+    }
+
+
+    useEffect(() => {
+        getRecomendation()
+        getArticleDetail()
     }, []);
+
 
     return (
         <div className="all-article-page">
             <div className="margin-article-page">
-                <div className="main-article">
-                    <div className='title-article-articlepage'>
-                        <article className="text-title-articlepage">
-                            hallo SEmauaaaa nama saya milo hallo SEmauaaaa nama saya milo hallo SEmauaaaa nama saya milo hallo SEmauaaaa nama saya milo
-                        </article>
-                    </div>
-                    <div className="image-article-articlepage">
-                        <Image
-                            src='https://bit.ly/dan-abramov'
-                            alt='Dan Abramov'
-                            className="image-articlepage"
+                {
+                    articleMain != null ? <div className="main-article">
+                        <div className='title-article-articlepage'>
+                            <article className="text-title-articlepage">
+                                {articleMain.title}
+                            </article>
+                        </div>
+                        <div className="image-article-articlepage">
+                            <Image
+                                src={articleMain.image_file_data}
+                                alt='Dan Abramov'
+                                className="image-articlepage"
+                            />
+
+                        </div>
+                        <div className="text-main-article-articlepage"
+                            dangerouslySetInnerHTML={innerHTMLCool()}
                         />
 
                     </div>
-                    <div className="text-main-article-articlepage">
-                        <article>
-                            huahushauhb ub uauicbias icbiuiu bcuabiu bauibiub dabu uabu u baubioadbyodabobioia iuban opiahupb onu ioadnon oonoa oaoihioadd
-                        </article>
-                    </div>
-                </div>
+                        : <p>Loading</p>
+                }
                 <aside className="recomend-article">
                     <div className="rekomendasi-baritalainnya-articlepage">
                         Berita Lainnya

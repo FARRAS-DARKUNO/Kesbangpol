@@ -9,6 +9,7 @@ import '../style/mainPage.css'
 
 import CardArticle from "../Componen/cardArticle/cardArticle";
 import CardAparat from "../Componen/cardAparat/cardAparat";
+import CardArticleReal from "../Componen/cardArticleReal/cardArticleReal";
 
 const MainPage = () => {
 
@@ -26,7 +27,6 @@ const MainPage = () => {
         axios.get("http://adminmesuji.embuncode.com/api/news?instansi_id=2")
             .then(function (response) {
                 var temp = []
-                // console.log(response.data.data.data.length)
                 for (let i = 0; i < 3; i += 1) {
                     if (i < response.data.data.data.length) {
                         temp.push(response.data.data.data[i])
@@ -60,10 +60,6 @@ const MainPage = () => {
     return (
 
         <div className="layout">
-
-            {/* <Image src='https://bit.ly/dan-abramov' alt='Dan Abramov' cliassName="image-deerah" />*/}
-
-
             <Carousel activeIndex={index} onSelect={handleSelect} className="margin ">
                 {newsCard != null ? newsCard.map((placement) => (
                     <Carousel.Item >
@@ -113,11 +109,24 @@ const MainPage = () => {
                 <CardAparat />
 
             </div>
+            <div className="article">
+                <div className="sub-article">
+                    <article className="title-article">
+                        Artikel
+                    </article>
+                    <article className="see-more">
+                        see more
+                    </article>
+                </div>
+
+                <CardArticleReal />
+
+            </div>
 
             <div className="article">
                 <div className="sub-article">
                     <article className="title-article">
-                        Artickel
+                        Berita
                     </article>
                     <article className="see-more">
                         see more

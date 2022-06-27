@@ -12,6 +12,7 @@ import './App.css'
 import MainPage from './screen/mainPage';
 import NewsPage from './screen/newsPage';
 import ArticlePage from './screen/articlePage';
+
 import MenuDraf from './Componen/menuDraf/menuDraf';
 import Header from './Componen/header/header';
 import Footer from './Componen/footer/footer';
@@ -27,9 +28,10 @@ function App() {
 
           <BrowserRouter>
             <Routes>
-              {/* <Route path="/" element={<MainPage />} /> */}
+              <Route path="/" element={<MainPage />} />
               {/* <Route path="/" element={<NewsPage />} /> */}
-              <Route path="/" element={<ArticlePage />} />
+              {/* <Route path="/" element={<ArticlePage />} /> */}
+
             </Routes>
           </BrowserRouter>
           <Footer />
