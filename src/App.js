@@ -14,6 +14,7 @@ import NewsPage from './screen/newsPage';
 import ListNewsPage from './screen/listNewsPage';
 import ListArticlePage from './screen/listArticlePage';
 import ArticlePage from './screen/articlePage';
+import StatisPage from './screen/statisPage';
 
 import MenuDraf from './Componen/menuDraf/menuDraf';
 import Header from './Componen/header/header';
@@ -32,9 +33,10 @@ function App() {
             <Routes>
               {/* <Route path="/" element={<MainPage />} /> */}
               {/* <Route path="/" element={<NewsPage />} /> */}
-              <Route path="/" element={<ArticlePage />} />
+              {/* <Route path="/" element={<ArticlePage />} /> */}
               {/* <Route path="/" element={<ListNewsPage />} /> */}
               {/* <Route path="/" element={<ListArticlePage />} /> */}
+              <Route path="/" element={<StatisPage />} />
 
             </Routes>
           </BrowserRouter>
