@@ -11,6 +11,8 @@ import './App.css'
 
 import MainPage from './screen/mainPage';
 import NewsPage from './screen/newsPage';
+import ListNewsPage from './screen/listNewsPage';
+import ListArticlePage from './screen/listArticlePage';
 import ArticlePage from './screen/articlePage';
 
 import MenuDraf from './Componen/menuDraf/menuDraf';
@@ -28,9 +30,11 @@ function App() {
 
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<MainPage />} />
+              {/* <Route path="/" element={<MainPage />} /> */}
               {/* <Route path="/" element={<NewsPage />} /> */}
-              {/* <Route path="/" element={<ArticlePage />} /> */}
+              <Route path="/" element={<ArticlePage />} />
+              {/* <Route path="/" element={<ListNewsPage />} /> */}
+              {/* <Route path="/" element={<ListArticlePage />} /> */}
 
             </Routes>
           </BrowserRouter>

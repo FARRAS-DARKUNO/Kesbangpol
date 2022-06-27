@@ -11,7 +11,7 @@ const ArticlePage = () => {
     const [articleMain, getArticleMain] = useState(null)
 
     const getRecomendation = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/news?instansi_id=2")
+        await axios.get("http://adminmesuji.embuncode.com/api/article?instansi_id=2")
             .then(function (response) {
                 getNewsCard(response.data.data.data)
                 // console.log(response.data.data.data[0]);
@@ -24,7 +24,7 @@ const ArticlePage = () => {
     }
 
     const getArticleDetail = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/news/2-contrary-to-popular-belief--lorem-ipsum-is-not-simply-random-text.-it-has-roots-in-a-piece-of-classical-latin-literature-from-45-bc")
+        await axios.get("http://adminmesuji.embuncode.com/api/article/2-vero-eos-et-accusamus-et-iusto-odio-dignissimos-ducimus-qui-blanditiis-praesentium-voluptatum-deleniti-atque-corrupti-quos-dolores-et-quas-molestias")
             .then(function (response) {
                 getArticleMain(response.data.data)
                 console.log('masuk')
