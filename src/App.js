@@ -16,6 +16,7 @@ import ListArticlePage from './screen/listArticlePage';
 import ArticlePage from './screen/articlePage';
 import StatisPage from './screen/statisPage';
 import FotoPage from './screen/fotoPage';
+import VideoPage from './screen/videoPage';
 
 import MenuDraf from './Componen/menuDraf/menuDraf';
 import Header from './Componen/header/header';
@@ -38,7 +39,8 @@ function App() {
               {/* <Route path="/" element={<ListNewsPage />} /> */}
               {/* <Route path="/" element={<ListArticlePage />} /> */}
               {/* <Route path="/" element={<StatisPage />} /> */}
-              <Route path="/" element={<FotoPage />} />
+              {/* <Route path="/" element={<FotoPage />} /> */}
+              <Route path="/" element={<VideoPage />} />
 
             </Routes>
           </BrowserRouter>

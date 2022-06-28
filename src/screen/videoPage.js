@@ -4,12 +4,13 @@ import '../style/fotoPage.css'
 import { Card, Button } from "react-bootstrap";
 import { FaAngleRight } from "react-icons/fa";
 
-const FotoPage = () => {
+const VideoPage = () => {
     const [recomendation, getRecomentdation] = useState(null)
     const [contain, getContain] = useState(null)
 
+
     const setContain = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/image-gallery?instansi_id=2")
+        await axios.get("http://adminmesuji.embuncode.com/api/video-gallery?instansi_id=2")
             .then(function (response) {
                 getContain(response.data.data.data)
                 // console.log('masuk')
@@ -22,7 +23,7 @@ const FotoPage = () => {
     }
 
     const setRecomendation = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/video-gallery?instansi_id=2")
+        await axios.get("http://adminmesuji.embuncode.com/api/image-gallery?instansi_id=2")
             .then(function (response) {
                 getRecomentdation(response.data.data.data)
                 console.log('masuk baget')
@@ -41,7 +42,7 @@ const FotoPage = () => {
     return (
         <div className="all-galery-foto-page">
             <div className="title-galery-foto-Page">
-                Galery Foto
+                Galery Video
             </div>
             <div className="main-galery-foto-page">
                 <div className="contain-galery-foto">
@@ -49,7 +50,7 @@ const FotoPage = () => {
                         {
                             contain != null ? contain.map((index) => (
                                 <Card style={{ width: '18rem' }} className='margin-foto'>
-                                    <Card.Img variant="top" src={index.image_gallery_item[0].image_file_data} className="image-foto" />
+                                    <Card.Img variant="top" src={index.image_gallery_item[0].thumbnail_url} className="image-foto" />
                                     <Card.Body className="body-card">
                                         <Card.Title className="line-clamp">{index.name}</Card.Title>
                                         <Card.Text className="text-card">{index.description}</Card.Text>
@@ -64,7 +65,7 @@ const FotoPage = () => {
                     <div className="recomentation-contain-another">
                         <div className="border-recomendarion-another">
                             <div className="tittle-recomend-another">
-                                Rekomendasi Video
+                                Rekomendasi Foto
                             </div>
                             {
                                 recomendation != null ? recomendation.map((index) => (
@@ -72,9 +73,10 @@ const FotoPage = () => {
                                         <article className="text-recomend-another">
                                             {index.name}
                                         </article>
-                                        <div>
+                                        <di>
                                             <FaAngleRight color="rgb(33, 93, 121)" />
-                                        </div>
+                                        </di>
+
                                     </div>
                                 )) : <p>Loading</p>
                             }
@@ -89,4 +91,4 @@ const FotoPage = () => {
     )
 
 }
-export default FotoPage
+export default VideoPage
