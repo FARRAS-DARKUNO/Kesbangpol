@@ -38,7 +38,7 @@ const CardArticle = () => {
                     <Card style={{ width: '20rem' }} className='card' >
                         <Card.Img variant="top" src={placement.image_file_data} className="image-card" />
                         <Card.Body className="body-card">
-                            <Card.Title className="title-card">{placement.title}</Card.Title>
+                            <Card.Title className="line-clamp">{placement.title}</Card.Title>
                             <Card.Text className="text-card">{placement.intro}</Card.Text>
 
                         </Card.Body>
