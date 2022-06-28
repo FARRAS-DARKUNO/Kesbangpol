@@ -13,27 +13,6 @@ import {
     ModalCloseButton,
     useDisclosure,
 } from '@chakra-ui/react'
-
-// function MyVerticallyCenteredModal(props) {
-//     console.log(props)
-//     return (
-//         <Modal
-//             {...props}
-//             // size="lg"0
-//             aria-labelledby="contained-modal-title-vcenter"
-//             // restoreFocus
-//             centered
-//         >
-//             <Modal.Body>
-//                 <Image src={props.image} />
-//             </Modal.Body>
-//             <Modal.Footer>
-//                 <Button onClick={props.onHide}>Tutup</Button>
-//             </Modal.Footer>
-//         </Modal>
-//     );
-// }
-
 const ContainFotoPage = () => {
     const [recomendation, getRecomentdation] = useState(null)
     const [contain, getContain] = useState(null)
@@ -79,12 +58,6 @@ const ContainFotoPage = () => {
 
     return (
         <>
-            {/* <MyVerticallyCenteredModal
-                show={modalShow}
-                image={imagesfile}
-                onHide={() => setModalShow(false)}
-            /> */}
-
             <Modal onClose={onClose} isOpen={isOpen} isCentered>
                 <ModalOverlay />
                 <ModalContent>
