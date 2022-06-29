@@ -18,6 +18,7 @@ import StatisPage from './screen/statisPage';
 import FotoPage from './screen/fotoPage';
 import VideoPage from './screen/videoPage';
 import ContainFotoPage from './screen/containFotoPage';
+import ContainVideoPage from './screen/contaiVideoPage';
 
 import MenuDraf from './Componen/menuDraf/menuDraf';
 import Header from './Componen/header/header';
@@ -34,7 +35,7 @@ function App() {
 
           <BrowserRouter>
             <Routes>
-              {/* <Route path="/" element={<MainPage />} /> */}
+              <Route path="/" element={<MainPage />} />
               {/* <Route path="/" element={<NewsPage />} /> */}
               {/* <Route path="/" element={<ArticlePage />} /> */}
               {/* <Route path="/" element={<ListNewsPage />} /> */}
@@ -42,7 +43,8 @@ function App() {
               {/* <Route path="/" element={<StatisPage />} /> */}
               {/* <Route path="/" element={<FotoPage />} /> */}
               {/* <Route path="/" element={<VideoPage />} /> */}
-              <Route path="/" element={<ContainFotoPage />} />
+              {/* <Route path="/" element={<ContainFotoPage />} /> */}
+              {/* <Route path="/" element={<ContainVideoPage />} /> */}
             </Routes>
           </BrowserRouter>
           <Footer />
