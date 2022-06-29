@@ -1,0 +1,51 @@
+.sdp-layout {
+    width: 70%;
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+    margin-bottom: 40px;
+    border-radius: 15px;
+    flex-direction: column;
+    border-top: 10px solid rgb(33, 93, 121);
+    display: flex;
+}
+
+.sdp-description {
+    font-size: 16px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.download-file {
+    /* height: 20px; */
+    width: max-content;
+    background-color: rgb(33, 93, 121);
+    border-radius: 10px;
+    padding: 10px;
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.download {
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.download-file:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+}
+
+.spd-show-document {
+    height: 600px;
+    width: 100%;
+    background-color: aqua;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
