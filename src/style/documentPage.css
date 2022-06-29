@@ -1,0 +1,55 @@
+.documen-layout {
+    width: 70%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    display: flex;
+}
+
+.domumen-contain {
+    width: 100%;
+    border-radius: 15px;
+    /* background-color: aqua; */
+    /* height: 200px; */
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    margin-bottom: 40px;
+    display: flex;
+    border-top: 10px solid rgb(33, 93, 121);
+}
+
+.document-tittle {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 30px
+}
+
+.documen {
+    /* background-color: aqua; */
+    width: 100%;
+    padding: 20px;
+    /* height: 20px; */
+    border-bottom: 1px solid rgba(33, 93, 121, 0.37);
+    flex-direction: column;
+}
+
+.documen:hover {
+    transform: scale(1.01);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+}
+
+.title-document {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.sub-tittle-document {
+    font-size: 10px;
+    color: rgba(110, 110, 110, 0.719);
+}
