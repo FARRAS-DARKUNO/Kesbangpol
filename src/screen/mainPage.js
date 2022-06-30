@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Image } from '@chakra-ui/react'
 import { Carousel } from "react-bootstrap";
 import axios from "axios";
-
+import { BiChevronsRight } from 'react-icons/bi'
 
 import '../style/mainPage.css'
 
@@ -22,9 +22,8 @@ const MainPage = () => {
         setIndex(selectedIndex);
     };
 
-
-    useEffect(() => {
-        axios.get("http://adminmesuji.embuncode.com/api/news?instansi_id=2")
+    const setNews = async () => {
+        await axios.get("http://adminmesuji.embuncode.com/api/news?instansi_id=2")
             .then(function (response) {
                 var temp = []
                 for (let i = 0; i < 3; i += 1) {
@@ -41,7 +40,9 @@ const MainPage = () => {
                 console.log(error);
             })
 
-        axios.get("http://adminmesuji.embuncode.com/api/instansi/detail/20")
+    }
+    const setDetail = async () => {
+        await axios.get("http://adminmesuji.embuncode.com/api/instansi/detail/20")
             .then(function (response) {
                 console.log('tentang')
                 console.log(response.data.data.tentang)
@@ -53,6 +54,12 @@ const MainPage = () => {
                 // handle error
                 console.log(error);
             })
+    }
+
+    useEffect(() => {
+        setNews()
+        setDetail()
+
     }, []);
 
 
@@ -78,6 +85,29 @@ const MainPage = () => {
             </Carousel>
 
             <div className="article">
+                <div className="sub-article">
+                    <div className="title-real-in-main-page">
+                        <article className="title-article">
+                            Artikel Terbaru
+                        </article>
+                    </div>
+
+                    <div className="see-more-botton">
+                        <div className="icon-div-center">
+                            <BiChevronsRight color="#ffff" size={24} />
+                        </div>
+                        <article className="see-more">
+                            Lihat Lengkap
+                        </article>
+                    </div>
+
+                </div>
+
+                <CardArticleReal />
+
+            </div>
+
+            {/* <div className="article">
                 <div className="sub-tentang">
                     <article className="title-article">
                         Tentang
@@ -97,40 +127,38 @@ const MainPage = () => {
                     </div>
                 </div>
 
-            </div>
+            </div> */}
+            <div className="layout-aparat">
+                <div className="article">
+                    <div className="sub-article">
+                        <div className="title-real-in-main-page">
+                            <article className="title-article-struktur">
+                                Struktur
+                            </article>
+                        </div>
+                    </div>
 
-            <div className="article">
-                <div className="sub-article">
-                    <article className="title-article">
-                        Struktur
-                    </article>
+                    <CardAparat />
+
                 </div>
-
-                <CardAparat />
-
             </div>
-            <div className="article">
-                <div className="sub-article">
-                    <article className="title-article">
-                        Artikel
-                    </article>
-                    <article className="see-more">
-                        see more
-                    </article>
-                </div>
 
-                <CardArticleReal />
-
-            </div>
 
             <div className="article">
                 <div className="sub-article">
-                    <article className="title-article">
-                        Berita
-                    </article>
-                    <article className="see-more">
-                        see more
-                    </article>
+                    <div className="title-real-in-main-page">
+                        <article className="title-article">
+                            Berita Terbaru
+                        </article>
+                    </div>
+                    <div className="see-more-botton">
+                        <div className="icon-div-center">
+                            <BiChevronsRight color="#ffff" size={24} />
+                        </div>
+                        <article className="see-more">
+                            Lihat Lengkap
+                        </article>
+                    </div>
                 </div>
 
                 <CardArticle />

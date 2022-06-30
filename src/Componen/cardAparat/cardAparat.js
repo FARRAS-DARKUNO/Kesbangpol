@@ -31,7 +31,7 @@ const CardAparat = () => {
 
                 {newsCard != null ? <div className="aparat">
 
-                    <Card style={{ width: widthPicture }} className='card' >
+                    <Card style={{ width: widthPicture }} className='card-aparat' >
                         <Card.Img variant="top" src={newsCard.foto_kepala} className="image" />
                         <Card.Body className="body-card">
                             <Card.Title className="title-card">{newsCard.nama_kepala}</Card.Title>
@@ -40,7 +40,7 @@ const CardAparat = () => {
                         </Card.Body>
                     </Card>
 
-                    <Card style={{ width: widthPicture }} className='card' >
+                    <Card style={{ width: widthPicture }} className='card-aparat' >
                         <Card.Img variant="top" src={newsCard.foto_wakil_kepala} className="image" />
                         <Card.Body className="body-card">
                             <Card.Title className="title-card">{newsCard.nama_wakil_kepala}</Card.Title>
@@ -49,7 +49,7 @@ const CardAparat = () => {
                         </Card.Body>
                     </Card>
 
-                    <Card style={{ width: widthPicture }} className='card' >
+                    <Card style={{ width: widthPicture }}  >
                         <Card.Img variant="top" src={newsCard.foto_sekretaris} className="image" />
                         <Card.Body className="body-card">
                             <Card.Title className="title-card">{newsCard.nama_sekretaris}</Card.Title>
