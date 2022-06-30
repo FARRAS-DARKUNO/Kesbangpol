@@ -33,11 +33,11 @@ function App() {
         <div className='all'>
 
           <MenuDraf />
-          <Header />
+          {/* <Header /> */}
 
           <BrowserRouter>
             <Routes>
-              {/* <Route path="/" element={<MainPage />} /> */}
+              <Route path="/" element={<MainPage />} />
               {/* <Route path="/" element={<NewsPage />} /> */}
               {/* <Route path="/" element={<ArticlePage />} /> */}
               {/* <Route path="/" element={<ListNewsPage />} /> */}
@@ -48,7 +48,7 @@ function App() {
               {/* <Route path="/" element={<ContainFotoPage />} /> */}
               {/* <Route path="/" element={<ContainVideoPage />} /> */}
               {/* <Route path="/" element={<DocumentPage />} /> */}
-              <Route path="/" element={<ShowDocumentPage />} />
+              {/* <Route path="/" element={<ShowDocumentPage />} /> */}
             </Routes>
           </BrowserRouter>
           <Footer />

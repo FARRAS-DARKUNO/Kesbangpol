@@ -8,13 +8,26 @@
     }
 }
 
+.logo-aja {
+    width: 25%;
+    height: 100px;
+    /* background-color: rgb(24, 224, 191); */
+    display: flex;
+}
+
 .menu-draf-all {
     width: 100%;
     align-items: center;
     justify-content: center;
     display: flex;
-    margin-bottom: 20px;
-    background-color: rgb(33, 93, 121);
+    /* margin-bottom: 20px; */
+    /* background-color: rgb(33, 93, 121); */
+}
+
+.text-in-class {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(33, 93, 121);
 }
 
 .draf {
@@ -28,8 +41,10 @@
 }
 
 .menu {
-    width: 60%;
+    /* width: 60%; */
     /* display: none; */
+    justify-content: center;
+    align-items: center;
     flex-direction: row;
     display: flex;
     flex-wrap: wrap;
@@ -61,5 +76,7 @@
 @media screen and (max-width: 1170px) {
     .drawer {
         display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Text } from "@chakra-ui/react";
 import axios from "axios";
-import { TbDownload } from "react-icons/tb";
 
 import '../style/showDocumentPage.css'
 
@@ -40,14 +39,7 @@ const ShowDocumentPage = () => {
                         <article className="sdp-description">
                             {contain.description_dokumen}
                         </article>
-                        {/* <div className="download-file">
-                            <div>
-                                <TbDownload color="#ffff" size={20} />
-                            </div>
-                            <article className="download">
-                                Download
-                            </article>
-                        </div> */}
+
                         <div className="spd-show-document">
                             <iframe
                                 src={"data:application/pdf;base64," + contain.dokumen_file_data}

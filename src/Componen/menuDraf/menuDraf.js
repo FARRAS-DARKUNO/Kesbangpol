@@ -13,8 +13,9 @@ import {
     DrawerHeader,
     DrawerBody,
     Button,
+    Image,
 } from '@chakra-ui/react'
-import { BiSearch } from "react-icons/bi";
+import { BiMenu } from "react-icons/bi";
 import './menuDraf.css';
 import axios from "axios";
 
@@ -23,6 +24,7 @@ const MenuDraf = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [listMenus, getMenuList] = useState(null)
     const [statisMenu, getStatisMenu] = useState(null)
+    const [detail, setDetail] = useState(null)
 
     const setMenuList = async () => {
         await axios.get("http://adminmesuji.embuncode.com/api/menus?instansi_id=2")
@@ -37,8 +39,19 @@ const MenuDraf = () => {
         await axios.get("http://adminmesuji.embuncode.com/api/static-page?instansi_id=2")
             .then(function (response) {
                 getStatisMenu(response.data.data.items)
-                console.log('masuk menu');
-                console.log(response.data.data.items);
+                // console.log('masuk menu');
+                // console.log(response.data.data.items);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+    }
+    const setDetailHead = async () => {
+        await axios.get("http://adminmesuji.embuncode.com/api/instansi/detail/20")
+            .then(function (response) {
+                setDetail(response.data)
+                // console.log(response.data);
             })
             .catch(function (error) {
                 // handle error
@@ -49,11 +62,17 @@ const MenuDraf = () => {
     useEffect(() => {
         setMenuList()
         setHalamanStatis()
+        setDetailHead()
     }, []);
 
     return (
         <div className="menu-draf-all">
             <div className="draf">
+                <div className="logo-aja">
+                    {detail != null
+                        ? <Image src={detail.data.logo_instansi} />
+                        : <p>Loading</p>}
+                </div>
                 <div className="menu">
                     {listMenus != null ? listMenus.map((placement) => {
                         return (
@@ -70,6 +89,7 @@ const MenuDraf = () => {
                                                 _hover={{ bg: 'gray.400' }}
                                                 _expanded={{ bg: 'blue.400' }}
                                                 _focus={{ boxShadow: 'outline' }}
+                                                className='text-in-class'
                                             >
                                                 {isOpen ? placement.name : placement.name}
                                             </MenuButton>
@@ -88,7 +108,7 @@ const MenuDraf = () => {
                                                     <MenuList>
                                                         {
                                                             statisMenu.map((listDown) => (
-                                                                <MenuItem onClick={() => alert('Kagebunshin')}>{listDown.title}</MenuItem>
+                                                                <MenuItem className='text-in-class' onClick={() => alert('Kagebunshin')}>{listDown.title}</MenuItem>
                                                             ))
                                                         }
                                                     </MenuList> : null
@@ -104,10 +124,10 @@ const MenuDraf = () => {
                 </div>
 
                 <div className="drawer">
-                    <Button colorScheme='blue' onClick={onOpen}>
-                        Open
+                    <Button onClick={onOpen}>
+                        <BiMenu size={30} />
                     </Button>
-                    <Drawer placement={'left'} onClose={onClose} isOpen={isOpen}>
+                    <Drawer placement={'right'} onClose={onClose} isOpen={isOpen}>
                         <DrawerOverlay />
                         <DrawerContent>
                             <DrawerHeader borderBottomWidth='1px'>menu</DrawerHeader>
@@ -126,6 +146,7 @@ const MenuDraf = () => {
                                                         _hover={{ bg: 'gray.400' }}
                                                         _expanded={{ bg: 'blue.400' }}
                                                         _focus={{ boxShadow: 'outline' }}
+                                                        className='text-in-class'
                                                     >
                                                         {isOpen ? placement.name : placement.name}
                                                     </MenuButton>
@@ -134,7 +155,7 @@ const MenuDraf = () => {
                                                             <MenuList>
                                                                 {
                                                                     placement.children.map((listDown) => (
-                                                                        <MenuItem onClick={() => alert('Kagebunshin')}>{listDown.name}</MenuItem>
+                                                                        <MenuItem className='text-in-class' onClick={() => alert('Kagebunshin')}>{listDown.name}</MenuItem>
                                                                     ))
                                                                 }
                                                             </MenuList> : null
@@ -144,7 +165,7 @@ const MenuDraf = () => {
                                                             <MenuList>
                                                                 {
                                                                     statisMenu.map((listDown) => (
-                                                                        <MenuItem onClick={() => alert('Kagebunshin')}>{listDown.title}</MenuItem>
+                                                                        <MenuItem className='text-in-class' onClick={() => alert('Kagebunshin')}>{listDown.title}</MenuItem>
                                                                     ))
                                                                 }
                                                             </MenuList> : null
@@ -159,7 +180,7 @@ const MenuDraf = () => {
                         </DrawerContent>
                     </Drawer>
                 </div>
-                <div className="search">
+                {/* <div className="search">
                     <Stack spacing={3}>
 
                         <Input
@@ -170,7 +191,7 @@ const MenuDraf = () => {
 
                     </Stack>
                     <BiSearch className="icon-search" />
-                </div>
+                </div> */}
             </div>
         </div>
     );
