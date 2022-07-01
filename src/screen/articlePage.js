@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Image } from "@chakra-ui/react";
 import { FaAngleRight } from "react-icons/fa";
 import axios from "axios";
-
+import { useParams } from "react-router";
 import '../style/articlePage.css'
 
-const ArticlePage = () => {
+const ArticlePage = (props) => {
+
+    const { id } = useParams()
+    console.log('hallo semua')
 
     const [newsCard, getNewsCard] = useState(null)
     const [articleMain, getArticleMain] = useState(null)
@@ -22,13 +25,15 @@ const ArticlePage = () => {
             })
 
     }
+    console.log('INI ID NYA WOI : ' + id)
 
     const getArticleDetail = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/article/2-vero-eos-et-accusamus-et-iusto-odio-dignissimos-ducimus-qui-blanditiis-praesentium-voluptatum-deleniti-atque-corrupti-quos-dolores-et-quas-molestias")
+        let address = 'http://adminmesuji.embuncode.com/api/article/' + id
+        await axios.get(address)
             .then(function (response) {
                 getArticleMain(response.data.data)
-                console.log('masuk')
-                console.log(response.data.data);
+                console.log('masuk nih uda ada id nya')
+                console.log(id);
             })
             .catch(function (error) {
                 // handle error

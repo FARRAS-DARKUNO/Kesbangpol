@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Image, Text } from '@chakra-ui/react'
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 import '../style/newsPage.css'
 
-const ListArticlePage = () => {
+const ListArticlePage = (props) => {
 
     const [newsCard, getNewsCard] = useState(null)
 
@@ -28,7 +29,12 @@ const ListArticlePage = () => {
             <div className="show-all-news">
 
                 {newsCard != null ? newsCard.map((placement) => (
-                    <div className="show-news" >
+                    <Link
+                        to={{
+                            pathname: '/article/' + placement.id
+                        }}
+                        className="show-news"
+                    >
 
                         <Image
                             src={placement.image_file_data}
@@ -49,7 +55,7 @@ const ListArticlePage = () => {
                                 {placement.intro}
                             </Text>
                         </div>
-                    </div>
+                    </Link>
                 )) : <p>Loading</p>
                 }
             </div>

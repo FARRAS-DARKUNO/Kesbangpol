@@ -18,6 +18,7 @@ import {
 import { BiMenu } from "react-icons/bi";
 import './menuDraf.css';
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const MenuDraf = () => {
 
@@ -68,11 +69,12 @@ const MenuDraf = () => {
     return (
         <div className="menu-draf-all">
             <div className="draf">
-                <div className="logo-aja">
+
+                <Link className="logo-aja" to={'/'}>
                     {detail != null
                         ? <Image src={detail.data.logo_instansi} />
                         : <p>Loading</p>}
-                </div>
+                </Link>
                 <div className="menu">
                     {listMenus != null ? listMenus.map((placement) => {
                         return (
@@ -80,25 +82,51 @@ const MenuDraf = () => {
                                 <Menu>
                                     {({ isOpen }) => (
                                         <>
-                                            <MenuButton
-                                                px={2}
-                                                py={2}
-                                                transition='all 0.2s'
-                                                borderRadius='2xl'
-                                                bgColor={'white'}
-                                                _hover={{ bg: 'gray.400' }}
-                                                _expanded={{ bg: 'blue.400' }}
-                                                _focus={{ boxShadow: 'outline' }}
-                                                className='text-in-class'
-                                            >
-                                                {isOpen ? placement.name : placement.name}
-                                            </MenuButton>
+                                            {
+                                                placement.url != null ?
+                                                    <Link to={'' + placement.url}>
+                                                        <MenuButton
+                                                            px={2}
+                                                            py={2}
+                                                            transition='all 0.2s'
+                                                            borderRadius='2xl'
+                                                            bgColor={'white'}
+                                                            _hover={{ bg: 'gray.400' }}
+                                                            _expanded={{ bg: 'blue.400' }}
+                                                            _focus={{ boxShadow: 'outline' }}
+                                                            className='text-in-class'
+                                                        >
+                                                            {isOpen ? placement.name : placement.name}
+
+
+                                                        </MenuButton>
+                                                    </Link>
+                                                    : <MenuButton
+                                                        px={2}
+                                                        py={2}
+                                                        transition='all 0.2s'
+                                                        borderRadius='2xl'
+                                                        bgColor={'white'}
+                                                        _hover={{ bg: 'gray.400' }}
+                                                        _expanded={{ bg: 'blue.400' }}
+                                                        _focus={{ boxShadow: 'outline' }}
+                                                        className='text-in-class'
+                                                    >
+                                                        {isOpen ? placement.name : placement.name}
+
+
+                                                    </MenuButton>
+                                            }
+
                                             {
                                                 placement.children.length > 0 ?
                                                     <MenuList>
                                                         {
                                                             placement.children.map((listDown) => (
-                                                                <MenuItem onClick={() => alert('Kagebunshin')}>{listDown.name}</MenuItem>
+                                                                <Link to={'' + listDown.url}>
+                                                                    <MenuItem >{listDown.name}</MenuItem>
+                                                                </Link>
+
                                                             ))
                                                         }
                                                     </MenuList> : null
@@ -117,6 +145,7 @@ const MenuDraf = () => {
                                         </>
                                     )}
                                 </Menu>
+
                             </div>
                         )
                     }) : <p>LOADING</p>}
@@ -193,7 +222,7 @@ const MenuDraf = () => {
                     <BiSearch className="icon-search" />
                 </div> */}
             </div>
-        </div>
+        </div >
     );
 }
 

@@ -34,23 +34,20 @@ function App() {
 
           <MenuDraf />
           {/* <Header /> */}
-
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<MainPage />} />
-              {/* <Route path="/" element={<NewsPage />} /> */}
-              {/* <Route path="/" element={<ArticlePage />} /> */}
-              {/* <Route path="/" element={<ListNewsPage />} /> */}
-              {/* <Route path="/" element={<ListArticlePage />} /> */}
-              {/* <Route path="/" element={<StatisPage />} /> */}
-              {/* <Route path="/" element={<FotoPage />} /> */}
-              {/* <Route path="/" element={<VideoPage />} /> */}
-              {/* <Route path="/" element={<ContainFotoPage />} /> */}
-              {/* <Route path="/" element={<ContainVideoPage />} /> */}
-              {/* <Route path="/" element={<DocumentPage />} /> */}
-              {/* <Route path="/" element={<ShowDocumentPage />} /> */}
-            </Routes>
-          </BrowserRouter>
+          <Routes>
+            <Route path="/" exact element={<MainPage />} />
+            <Route path="/news/:id" element={<NewsPage />} />
+            <Route path="/article/:id" element={<ArticlePage />} />
+            <Route path="/news" element={<ListNewsPage />} />
+            <Route path="/article" element={<ListArticlePage />} />
+            <Route path="/a" element={<StatisPage />} />
+            <Route path="/image-gallery" element={<FotoPage />} />
+            <Route path="/video-gallery" element={<VideoPage />} />
+            <Route path="/a" element={<ContainFotoPage />} />
+            <Route path="/a" element={<ContainVideoPage />} />
+            <Route path="/dokumen" element={<DocumentPage />} />
+            <Route path="/a" element={<ShowDocumentPage />} />
+          </Routes>
           <Footer />
         </div>
       </ChakraProvider>
