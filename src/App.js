@@ -46,7 +46,7 @@ function App() {
             <Route path="/a" element={<ContainFotoPage />} />
             <Route path="/a" element={<ContainVideoPage />} />
             <Route path="/dokumen" element={<DocumentPage />} />
-            <Route path="/a" element={<ShowDocumentPage />} />
+            <Route path="/dokumen/:slug" element={<ShowDocumentPage />} />
           </Routes>
           <Footer />
         </div>

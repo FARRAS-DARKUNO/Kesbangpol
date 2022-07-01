@@ -4,11 +4,12 @@ import { FaAngleRight } from "react-icons/fa";
 import axios from "axios";
 import { useParams } from "react-router";
 import '../style/articlePage.css'
+import { Link } from "react-router-dom";
 
-const ArticlePage = (props) => {
+const ArticlePage = () => {
 
     const { id } = useParams()
-    console.log('hallo semua')
+    // console.log('hallo semua')
 
     const [newsCard, getNewsCard] = useState(null)
     const [articleMain, getArticleMain] = useState(null)
@@ -78,25 +79,30 @@ const ArticlePage = (props) => {
                     </div>
                         : <p>Loading</p>
                 }
-                <aside className="recomend-article">
-                    <div className="rekomendasi-baritalainnya-articlepage">
+                <div className="recomend-article">
+                    <div className="tittle-recomend-another">
                         Berita Lainnya
                     </div>
-                    {newsCard != null ? newsCard.map((placement) => (
-                        <div className="list-recomentation-articlepage">
-                            <div>
-                                <article className="title-list-recomendation-article">
-                                    {placement.title}
+                    {
+                        newsCard != null ? newsCard.map((index) => (
+                            <Link
+                                to={{
+                                    pathname: '/article/' + index.id
+                                }}
+                                className="box-recomend-another"
+                            >
+                                <article className="text-recomend-another">
+                                    {index.title}
                                 </article>
-                            </div>
-                            <div>
-                                <FaAngleRight />
-                            </div>
-                        </div>
-                    )) : <p>Loading</p>}
+                                <div>
+                                    <FaAngleRight color="rgb(33, 93, 121)" />
+                                </div>
+                            </Link>
+                        )) : <p>Loading</p>
+                    }
 
 
-                </aside>
+                </div>
             </div>
         </div>
     )

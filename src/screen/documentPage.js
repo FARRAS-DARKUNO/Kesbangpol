@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Text } from "@chakra-ui/react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 import '../style/documentPage.css'
 
@@ -38,14 +39,18 @@ const DocumentPage = () => {
                     </article>
                     {
                         contain != null ? contain.map((index) => (
-                            <div className="documen">
+                            <Link
+                                to={{
+                                    pathname: "/dokumen/" + index.slug
+                                }}
+                                className="documen">
                                 <article className="title-document">
                                     {index.dokumen_item[0].dokumen_file_name}
                                 </article>
                                 <article className="sub-tittle-document">
                                     {index.description}
                                 </article>
-                            </div>
+                            </Link>
                         )) : <p>Loading</p>
                     }
 

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import '../style/newsPage.css'
 
-const ListArticlePage = (props) => {
+const ListArticlePage = () => {
 
     const [newsCard, getNewsCard] = useState(null)
 

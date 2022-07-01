@@ -4,6 +4,7 @@ import { Carousel } from "react-bootstrap";
 import axios from "axios";
 import { BiChevronsRight } from 'react-icons/bi'
 import { FaAngleRight } from 'react-icons/fa'
+import { Link } from "react-router-dom";
 
 import '../style/mainPage.css'
 
@@ -97,7 +98,11 @@ const MainPage = () => {
                             alt="First slide"
                         />
                         <Carousel.Caption className="carousel-Caption">
-                            <article className="article-caption">{placement.title}</article>
+                            <Link className="article-caption"
+                                to={{
+                                    pathname: '/news/' + placement.id
+                                }}
+                            >{placement.title}</Link>
                             <br />
 
                         </Carousel.Caption>
@@ -131,7 +136,9 @@ const MainPage = () => {
                                         </div>
                                         {
                                             contain != null ? contain.map((index) => (
-                                                <div className="box-recomend-another">
+                                                <Link className="box-recomend-another" to={{
+                                                    pathname: "/dokumen/" + index.slug
+                                                }}>
                                                     <article className="text-recomend-another">
                                                         {index.name}
                                                     </article>
@@ -139,7 +146,7 @@ const MainPage = () => {
                                                         <FaAngleRight color="rgb(33, 93, 121)" />
                                                     </di>
 
-                                                </div>
+                                                </Link>
                                             )) : <p>Loading</p>
                                         }
 
@@ -160,14 +167,15 @@ const MainPage = () => {
                             </article>
                         </div>
 
-                        <div className="see-more-botton">
+                        <Link className="see-more-botton"
+                            to={'/article'}>
                             <div className="icon-div-center">
                                 <BiChevronsRight color="#ffff" size={24} />
                             </div>
                             <article className="see-more">
                                 Lihat Lengkap
                             </article>
-                        </div>
+                        </Link>
 
                     </div>
 
@@ -198,14 +206,16 @@ const MainPage = () => {
                                 Berita Terbaru
                             </article>
                         </div>
-                        <div className="see-more-botton">
+                        <Link className="see-more-botton"
+                            to={'/news'}
+                        >
                             <div className="icon-div-center">
                                 <BiChevronsRight color="#ffff" size={24} />
                             </div>
                             <article className="see-more">
                                 Lihat Lengkap
                             </article>
-                        </div>
+                        </Link>
                     </div>
 
                     <CardArticle />

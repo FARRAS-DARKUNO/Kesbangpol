@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 import '../cardArticle/cardArticle.css'
 
@@ -34,15 +35,18 @@ const CardArticleReal = () => {
             <div className="grip-article">
 
                 {newsCard != null ? newsCard.map((placement) => (
+                    <Link to={{
+                        pathname: '/article/' + placement.id
+                    }}>
+                        <Card style={{ width: '20rem' }} className='card' >
+                            <Card.Img variant="top" src={placement.image_file_data} className="image-card" />
+                            <Card.Body className="body-card">
+                                <Card.Title className="line-clamp">{placement.title}</Card.Title>
+                                <Card.Text className="text-card">{placement.intro}</Card.Text>
 
-                    <Card style={{ width: '20rem' }} className='card' >
-                        <Card.Img variant="top" src={placement.image_file_data} className="image-card" />
-                        <Card.Body className="body-card">
-                            <Card.Title className="title-card">{placement.title}</Card.Title>
-                            <Card.Text className="text-card">{placement.intro}</Card.Text>
-
-                        </Card.Body>
-                    </Card>
+                            </Card.Body>
+                        </Card>
+                    </Link>
 
                 )) : <p>Loading</p>}
 

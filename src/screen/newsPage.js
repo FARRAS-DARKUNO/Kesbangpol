@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Image } from "@chakra-ui/react";
-import { FaAngleRight } from "react-icons/fa";
+// import { FaAngleRight } from "react-icons/fa";
 import axios from "axios";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import { FaAngleRight } from 'react-icons/fa'
 
 import '../style/articlePage.css'
 
 const NewsPage = () => {
+    const { id } = useParams()
 
     const [newsCard, getNewsCard] = useState(null)
     const [articleMain, getArticleMain] = useState(null)
+
+    function refreshPage() {
+        window.location.reload();
+    }
 
     const getRecomendation = async () => {
         await axios.get("http://adminmesuji.embuncode.com/api/news?instansi_id=2")
@@ -24,7 +32,7 @@ const NewsPage = () => {
     }
 
     const getArticleDetail = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/news/2-contrary-to-popular-belief--lorem-ipsum-is-not-simply-random-text.-it-has-roots-in-a-piece-of-classical-latin-literature-from-45-bc")
+        await axios.get("http://adminmesuji.embuncode.com/api/news/" + id)
             .then(function (response) {
                 getArticleMain(response.data.data)
                 console.log('masuk')
@@ -73,25 +81,30 @@ const NewsPage = () => {
                     </div>
                         : <p>Loading</p>
                 }
-                <aside className="recomend-article">
-                    <div className="rekomendasi-baritalainnya-articlepage">
+                <div className="recomend-article">
+                    <div className="tittle-recomend-another">
                         Berita Lainnya
                     </div>
-                    {newsCard != null ? newsCard.map((placement) => (
-                        <div className="list-recomentation-articlepage">
-                            <div>
-                                <article className="title-list-recomendation-article">
-                                    {placement.title}
+                    {
+                        newsCard != null ? newsCard.map((index) => (
+                            <Link
+                                to={{
+                                    pathname: '/news/' + index.id
+                                }}
+                                className="box-recomend-another"
+                            >
+                                <article className="text-recomend-another">
+                                    {index.title}
                                 </article>
-                            </div>
-                            <div>
-                                <FaAngleRight />
-                            </div>
-                        </div>
-                    )) : <p>Loading</p>}
+                                <div>
+                                    <FaAngleRight color="rgb(33, 93, 121)" />
+                                </div>
+                            </Link>
+                        )) : <p>Loading</p>
+                    }
 
 
-                </aside>
+                </div>
             </div>
         </div>
     )

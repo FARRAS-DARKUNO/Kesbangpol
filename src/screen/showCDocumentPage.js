@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Text } from "@chakra-ui/react";
 import axios from "axios";
-
+import { useParams } from "react-router";
 import '../style/showDocumentPage.css'
 
 const ShowDocumentPage = () => {
 
+    const { slug } = useParams()
+
     const [contain, getContain] = useState(null)
 
     const setContain = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/dokumen/15-progres-capai-56%25--bendungan-margatiga-kabupaten-lampung-timur-ditargetkan-selesai-akhir-2021")
+        await axios.get("http://adminmesuji.embuncode.com/api/dokumen/" + slug)
             .then(function (response) {
                 getContain(response.data.data[0])
                 console.log('masuk aja BANGEEET')
