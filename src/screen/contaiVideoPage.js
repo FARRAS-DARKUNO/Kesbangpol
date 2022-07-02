@@ -14,6 +14,9 @@ import {
     useDisclosure,
     AspectRatio
 } from '@chakra-ui/react'
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+
 const ContainVideoPage = () => {
     const [recomendation, getRecomentdation] = useState(null)
     const [contain, getContain] = useState(null)
@@ -21,11 +24,14 @@ const ContainVideoPage = () => {
     const [linking, setlink] = useState(null)
     const [nameImage, setNameImage] = useState(null)
 
+
     let linkYoutube = 'https://www.youtube.com/embed/'
+
+    const { slug } = useParams()
 
 
     const setContain = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/video-gallery/classical-latin-literature-from-45-bc%2C-making-it-over-2000-yea")
+        await axios.get("http://adminmesuji.embuncode.com/api/video-gallery/" + slug)
             .then(function (response) {
                 getContain(response.data.data)
                 // console.log('masuk')
@@ -118,7 +124,9 @@ const ContainVideoPage = () => {
                                 </div>
                                 {
                                     recomendation != null ? recomendation.map((index) => (
-                                        <div className="box-recomend-another">
+                                        <Link className="box-recomend-another" to={{
+                                            pathname: "/video-gallery/" + index.slug
+                                        }}>
                                             <article className="text-recomend-another">
                                                 {index.name}
                                             </article>
@@ -126,7 +134,7 @@ const ContainVideoPage = () => {
                                                 <FaAngleRight color="rgb(33, 93, 121)" />
                                             </di>
 
-                                        </div>
+                                        </Link>
                                     )) : <p>Loading</p>
                                 }
 

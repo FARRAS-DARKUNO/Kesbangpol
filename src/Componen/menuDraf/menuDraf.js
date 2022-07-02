@@ -136,7 +136,12 @@ const MenuDraf = () => {
                                                     <MenuList>
                                                         {
                                                             statisMenu.map((listDown) => (
-                                                                <MenuItem className='text-in-class' onClick={() => alert('Kagebunshin')}>{listDown.title}</MenuItem>
+                                                                <Link to={{
+                                                                    pathname: "/" + listDown.id
+                                                                }}>
+                                                                    <MenuItem className='text-in-class' >{listDown.title}</MenuItem>
+                                                                </Link>
+
                                                             ))
                                                         }
                                                     </MenuList> : null

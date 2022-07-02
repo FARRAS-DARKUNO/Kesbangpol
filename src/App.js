@@ -40,11 +40,11 @@ function App() {
             <Route path="/article/:id" element={<ArticlePage />} />
             <Route path="/news" element={<ListNewsPage />} />
             <Route path="/article" element={<ListArticlePage />} />
-            <Route path="/a" element={<StatisPage />} />
+            <Route path="/:id" element={<StatisPage />} />
             <Route path="/image-gallery" element={<FotoPage />} />
             <Route path="/video-gallery" element={<VideoPage />} />
-            <Route path="/a" element={<ContainFotoPage />} />
-            <Route path="/a" element={<ContainVideoPage />} />
+            <Route path="/image-gallery/:slug" element={<ContainFotoPage />} />
+            <Route path="/video-gallery/:slug" element={<ContainVideoPage />} />
             <Route path="/dokumen" element={<DocumentPage />} />
             <Route path="/dokumen/:slug" element={<ShowDocumentPage />} />
           </Routes>

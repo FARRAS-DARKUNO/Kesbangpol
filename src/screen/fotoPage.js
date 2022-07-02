@@ -3,6 +3,7 @@ import axios from "axios"
 import '../style/fotoPage.css'
 import { Card, Button } from "react-bootstrap";
 import { FaAngleRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const FotoPage = () => {
     const [recomendation, getRecomentdation] = useState(null)
@@ -48,15 +49,18 @@ const FotoPage = () => {
                     <div className="galeri-card-foto">
                         {
                             contain != null ? contain.map((index) => (
-                                <Card style={{ width: '18rem' }} className='margin-foto'>
-                                    <Card.Img variant="top" src={index.image_gallery_item[0].image_file_data} className="image-foto" />
-                                    <Card.Body className="body-card">
-                                        <Card.Title className="line-clamp">{index.name}</Card.Title>
-                                        <Card.Text className="text-card">{index.description}</Card.Text>
+                                <Link to={{
+                                    pathname: "/image-gallery/" + index.slug
+                                }}>
+                                    <Card style={{ width: '18rem' }} className='margin-foto'>
+                                        <Card.Img variant="top" src={index.image_gallery_item[0].image_file_data} className="image-foto" />
+                                        <Card.Body className="body-card">
+                                            <Card.Title className="line-clamp">{index.name}</Card.Title>
+                                            <Card.Text className="text-card">{index.description}</Card.Text>
 
-                                    </Card.Body>
-                                </Card>
-
+                                        </Card.Body>
+                                    </Card>
+                                </Link>
                             )) : <p>loading</p>
                         }
 
@@ -68,14 +72,16 @@ const FotoPage = () => {
                             </div>
                             {
                                 recomendation != null ? recomendation.map((index) => (
-                                    <div className="box-recomend-another">
+                                    <Link className="box-recomend-another" to={{
+                                        pathname: "/video-gallery/" + index.slug
+                                    }}>
                                         <article className="text-recomend-another">
                                             {index.name}
                                         </article>
                                         <div>
                                             <FaAngleRight color="rgb(33, 93, 121)" />
                                         </div>
-                                    </div>
+                                    </Link>
                                 )) : <p>Loading</p>
                             }
 

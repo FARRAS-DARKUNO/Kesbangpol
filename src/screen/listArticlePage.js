@@ -25,7 +25,9 @@ const ListArticlePage = () => {
 
     return (
         <div className="all-news-page">
-            <Text className="title-article-in-newpage"> Artikel Terkini</Text>
+            <div className="title-galery-foto-Page">
+                Artikel Terkini
+            </div>
             <div className="show-all-news">
 
                 {newsCard != null ? newsCard.map((placement) => (

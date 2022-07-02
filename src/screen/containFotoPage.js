@@ -13,6 +13,8 @@ import {
     ModalCloseButton,
     useDisclosure,
 } from '@chakra-ui/react'
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 const ContainFotoPage = () => {
     const [recomendation, getRecomentdation] = useState(null)
     const [contain, getContain] = useState(null)
@@ -20,11 +22,11 @@ const ContainFotoPage = () => {
     const [imagesfile, setImageFile] = useState(null)
     const [nameImage, setNameImage] = useState(null)
 
-    // const [modalShow, setModalShow] = useState(false);
+    const { slug } = useParams()
 
 
     const setContain = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/image-gallery/search-for-%27lorem-ipsum%27-will-uncover-many-web-sites-still-in-their-infancy")
+        await axios.get("http://adminmesuji.embuncode.com/api/image-gallery/" + slug)
             .then(function (response) {
                 getContain(response.data.data)
                 console.log('masuk')
@@ -109,7 +111,9 @@ const ContainFotoPage = () => {
                                 </div>
                                 {
                                     recomendation != null ? recomendation.map((index) => (
-                                        <div className="box-recomend-another">
+                                        <Link className="box-recomend-another" to={{
+                                            pathname: "/image-gallery/" + index.slug
+                                        }}>
                                             <article className="text-recomend-another">
                                                 {index.name}
                                             </article>
@@ -117,7 +121,7 @@ const ContainFotoPage = () => {
                                                 <FaAngleRight color="rgb(33, 93, 121)" />
                                             </di>
 
-                                        </div>
+                                        </Link>
                                     )) : <p>Loading</p>
                                 }
 
