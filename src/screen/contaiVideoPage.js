@@ -59,7 +59,10 @@ const ContainVideoPage = () => {
     useEffect(() => {
         setContain()
         setRecomendation()
-    }, [])
+        return () => {
+            getRecomentdation(null)
+        }
+    }, [slug])
 
 
 

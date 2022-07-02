@@ -52,9 +52,13 @@ const ContainFotoPage = () => {
     }
 
     useEffect(() => {
+        getContain(null)
         setContain()
         setRecomendation()
-    }, [])
+        return () => {
+            getContain(null)
+        }
+    }, [slug])
 
 
 

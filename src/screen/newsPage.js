@@ -51,9 +51,13 @@ const NewsPage = () => {
 
 
     useEffect(() => {
+        getArticleMain(null)
         getRecomendation()
         getArticleDetail()
-    }, []);
+        return () => {
+            getArticleMain(null)
+        }
+    }, [id]);
 
 
     return (

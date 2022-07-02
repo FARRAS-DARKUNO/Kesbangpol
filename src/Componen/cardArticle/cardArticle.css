@@ -10,7 +10,7 @@
     /* margin-right: 30px; */
     margin-bottom: 30px;
     box-shadow: 5px 5px 6px rgb(63, 62, 62);
-
+    width: 20rem;
 }
 
 .grip-article {
@@ -39,4 +39,51 @@
     overflow: hidden;
     text-overflow: ellipsis;
     color: black;
+}
+
+@media screen and (max-width : 1115px) {
+    .card {
+        background-color: aliceblue;
+        border-radius: 10px;
+        /* margin-right: 30px; */
+        margin-bottom: 30px;
+        box-shadow: 5px 5px 6px rgb(63, 62, 62);
+        width: 40rem !important;
+
+    }
+
+    .grip-article {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center !important;
+        align-items: center;
+        flex-wrap: wrap;
+        display: flex;
+    }
+}
+
+@media screen and (max-width : 1660px) {
+    .card {
+        background-color: aliceblue;
+        border-radius: 10px;
+        /* margin-right: 30px; */
+        margin-bottom: 30px;
+        box-shadow: 5px 5px 6px rgb(63, 62, 62);
+        width: 20rem;
+
+    }
+
+}
+
+@media screen and (max-width : 1390px) {
+    .card {
+        background-color: aliceblue;
+        border-radius: 10px;
+        /* margin-right: 30px; */
+        margin-bottom: 30px;
+        box-shadow: 5px 5px 6px rgb(63, 62, 62);
+        width: 16rem;
+
+    }
+
 }

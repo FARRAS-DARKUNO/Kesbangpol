@@ -242,8 +242,35 @@
 }
 
 /* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px) {
+/* @media only screen and (max-width: 700px) {
     .modal-content {
         width: 100%;
+    }
+} */
+
+@media screen and (max-width: 1275px) {
+    .contain-galery-foto {
+        display: flex;
+        flex-direction: column !important;
+        /* justify-content: space-between; */
+        width: 100%;
+    }
+
+    .galeri-card-foto {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        /* background-color: aqua; */
+        width: 100% !important;
+    }
+
+    .recomentation-contain-another {
+        width: 100% !important;
+        /* background-color: rgb(22, 19, 190); */
+        /* height: 200px; */
+        /* display: flex; */
+        padding: 10px;
     }
 }

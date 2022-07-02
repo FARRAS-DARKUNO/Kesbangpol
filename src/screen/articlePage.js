@@ -49,10 +49,13 @@ const ArticlePage = () => {
 
 
     useEffect(() => {
+        getArticleMain(null)
         getRecomendation()
         getArticleDetail()
-    }, []);
-
+        return () => {
+            getArticleMain(null)
+        };
+    }, [id]);
 
     return (
         <div className="all-article-page">

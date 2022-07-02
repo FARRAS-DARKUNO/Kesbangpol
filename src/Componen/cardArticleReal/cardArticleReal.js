@@ -38,7 +38,7 @@ const CardArticleReal = () => {
                     <Link to={{
                         pathname: '/article/' + placement.id
                     }}>
-                        <Card style={{ width: '20rem' }} className='card' >
+                        <Card className='card' >
                             <Card.Img variant="top" src={placement.image_file_data} className="image-card" />
                             <Card.Body className="body-card">
                                 <Card.Title className="line-clamp">{placement.title}</Card.Title>
