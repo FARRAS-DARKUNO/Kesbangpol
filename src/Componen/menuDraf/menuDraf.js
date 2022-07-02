@@ -124,7 +124,7 @@ const MenuDraf = () => {
                                                         {
                                                             placement.children.map((listDown) => (
                                                                 <Link to={'' + listDown.url}>
-                                                                    <MenuItem >{listDown.name}</MenuItem>
+                                                                    <MenuItem className='text-in-class'>{listDown.name}</MenuItem>
                                                                 </Link>
 
                                                             ))
@@ -171,25 +171,52 @@ const MenuDraf = () => {
                                         <Menu>
                                             {({ isOpen }) => (
                                                 <>
-                                                    <MenuButton
-                                                        px={2}
-                                                        py={2}
-                                                        transition='all 0.2s'
-                                                        borderRadius='2xl'
-                                                        bgColor={'white'}
-                                                        _hover={{ bg: 'gray.400' }}
-                                                        _expanded={{ bg: 'blue.400' }}
-                                                        _focus={{ boxShadow: 'outline' }}
-                                                        className='text-in-class'
-                                                    >
-                                                        {isOpen ? placement.name : placement.name}
-                                                    </MenuButton>
+
+                                                    {
+                                                        placement.url != null ?
+                                                            <Link to={'' + placement.url}>
+                                                                <MenuButton
+                                                                    px={2}
+                                                                    py={2}
+                                                                    transition='all 0.2s'
+                                                                    borderRadius='2xl'
+                                                                    bgColor={'white'}
+                                                                    _hover={{ bg: 'gray.400' }}
+                                                                    _expanded={{ bg: 'blue.400' }}
+                                                                    _focus={{ boxShadow: 'outline' }}
+                                                                    className='text-in-class'
+                                                                >
+                                                                    {isOpen ? placement.name : placement.name}
+
+
+                                                                </MenuButton>
+                                                            </Link>
+                                                            : <MenuButton
+                                                                px={2}
+                                                                py={2}
+                                                                transition='all 0.2s'
+                                                                borderRadius='2xl'
+                                                                bgColor={'white'}
+                                                                _hover={{ bg: 'gray.400' }}
+                                                                _expanded={{ bg: 'blue.400' }}
+                                                                _focus={{ boxShadow: 'outline' }}
+                                                                className='text-in-class'
+                                                            >
+                                                                {isOpen ? placement.name : placement.name}
+
+
+                                                            </MenuButton>
+                                                    }
+
                                                     {
                                                         placement.children.length > 0 ?
                                                             <MenuList>
                                                                 {
                                                                     placement.children.map((listDown) => (
-                                                                        <MenuItem className='text-in-class' onClick={() => alert('Kagebunshin')}>{listDown.name}</MenuItem>
+                                                                        <Link to={'' + listDown.url}>
+                                                                            <MenuItem className='text-in-class'>{listDown.name}</MenuItem>
+                                                                        </Link>
+
                                                                     ))
                                                                 }
                                                             </MenuList> : null
@@ -199,7 +226,12 @@ const MenuDraf = () => {
                                                             <MenuList>
                                                                 {
                                                                     statisMenu.map((listDown) => (
-                                                                        <MenuItem className='text-in-class' onClick={() => alert('Kagebunshin')}>{listDown.title}</MenuItem>
+                                                                        <Link to={{
+                                                                            pathname: "/" + listDown.id
+                                                                        }}>
+                                                                            <MenuItem className='text-in-class' >{listDown.title}</MenuItem>
+                                                                        </Link>
+
                                                                     ))
                                                                 }
                                                             </MenuList> : null
@@ -214,18 +246,6 @@ const MenuDraf = () => {
                         </DrawerContent>
                     </Drawer>
                 </div>
-                {/* <div className="search">
-                    <Stack spacing={3}>
-
-                        <Input
-                            placeholder='Pencarian'
-                            size='md'
-                            bgColor={'white'}
-                            borderRadius={20} />
-
-                    </Stack>
-                    <BiSearch className="icon-search" />
-                </div> */}
             </div>
         </div >
     );
