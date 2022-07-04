@@ -76,6 +76,40 @@
     font-weight: bold;
 }
 
+.searching-and-category {
+    height: 50px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aqua; */
+    display: flex;
+}
+
+.layout-searching-and-category {
+    width: 70%;
+    height: 100%;
+    /* background-color: aqua; */
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+}
+
+.category {
+    align-items: center;
+    display: flex;
+}
+
+.searching {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.searching-botton {
+    margin-left: 10px;
+}
+
+
 @media (min-width: 1450px) {
     .show-news {
         width: 48%;
