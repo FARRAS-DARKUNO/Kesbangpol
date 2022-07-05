@@ -19,7 +19,9 @@ const ListArticlePage = () => {
 
     const [newsCard, getNewsCard] = useState(null)
     const [value, setValue] = useState('')
+
     const [pencarian, setPencarian] = useState('')
+
     const [category, setCategory] = useState(null)
     const [categoryList, setCategoryList] = useState('')
     const [newChardWithCategory, setNewChardWithCategory] = useState(null)
@@ -124,6 +126,9 @@ const ListArticlePage = () => {
                             colorScheme='blue'
                             className="searching-botton"
                             size='sm'
+                            onClick={() => {
+                                setPencarian(value)
+                            }}
                         >
                             Cari
                         </Button>
@@ -133,41 +138,56 @@ const ListArticlePage = () => {
             </div>
             <div className="show-all-news">
 
-                {newsCard != null && categoryList == "" ? newsCard.map((placement) => (
-                    <Link
-                        to={{
-                            pathname: '/article/' + placement.id
-                        }}
-                        className="show-news"
-                    >
+                {newsCard != null && categoryList == "" ?
 
-                        <Image
-                            src={placement.image_file_data}
-                            className='image-in-articles'
-                        />
-                        <div className="text-in-article">
-                            <Text
-                                className="text-title-article"
-                                marginBottom={5}
-                            >
-                                {placement.title}
+                    newsCard.filter((val) => {
+                        if (pencarian == '') {
+                            return val
+                        } else if (val.title.toLowerCase().includes(pencarian.toLocaleLowerCase())) {
+                            return val
+                        }
+                    }).map((placement) => (
+                        <Link
+                            to={{
+                                pathname: '/article/' + placement.id
+                            }}
+                            className="show-news"
+                        >
 
-                            </Text>
+                            <Image
+                                src={placement.image_file_data}
+                                className='image-in-articles'
+                            />
+                            <div className="text-in-article">
+                                <Text
+                                    className="text-title-article"
+                                    marginBottom={5}
+                                >
+                                    {placement.title}
 
-                            <Text
-                                className="text-shord-desc"
-                            >
-                                {placement.intro}
-                            </Text>
-                        </div>
-                    </Link>
-                )) : null
+                                </Text>
+
+                                <Text
+                                    className="text-shord-desc"
+                                >
+                                    {placement.intro}
+                                </Text>
+                            </div>
+                        </Link>
+                    )) : null
                 }
                 {
                     categoryList != '' && newChardWithCategory != null ?
-                        newChardWithCategory.map((placement) => (
+                        newChardWithCategory.filter((val) => {
+                            if (pencarian == '') {
+                                return val
+                            } else if (val.title.toLowerCase().includes(pencarian.toLocaleLowerCase())) {
+                                return val
+                            }
+                        }).map((placement) => (
                             <Link
                                 to={{
+
                                     pathname: '/article/' + placement.id
                                 }}
                                 className="show-news"
