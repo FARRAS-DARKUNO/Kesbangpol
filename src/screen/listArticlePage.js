@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react'
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Loading from "../Componen/loading/loading";
 
 import '../style/newsPage.css'
 
@@ -90,215 +91,226 @@ const ListArticlePage = () => {
     }
 
     return (
+
         <div className="all-news-page">
-            <div className="title-galery-foto-Page">
-                Artikel Terkini
-            </div>
-            <div className="searching-and-category">
-                <div className="layout-searching-and-category">
-                    <div className="category">
-                        <Menu>
-                            <MenuButton
-                                px={2}
-                                py={2}
-                                transition='all 0.2s'
-                                borderRadius='2xl'
-                                bgColor={'gray.400'}
-                                _hover={{ bg: 'gray.400' }}
-                                _expanded={{ bg: 'blue.400' }}
-                                _focus={{ boxShadow: 'outline' }}
-                                className='text-in-class'
-                            >
-                                Kategori
-                            </MenuButton>
-                            <MenuList>
-                                <MenuItem className='text-in-class' onClick={() => {
-                                    setCategoryList('')
-                                }}>Semua</MenuItem>
-                                {
-                                    category != null ? category.map((index) => (
-                                        <MenuItem className='text-in-class' onClick={() => {
-                                            setCategoryList(index.slug)
-                                            getNewCategory(index.slug)
-                                        }}>{index.nama_kategori}</MenuItem>
-                                    ))
-
-                                        : <MenuItem className='text-in-class'>LOADING</MenuItem>
-                                }
-
-                            </MenuList>
-                        </Menu>
-                    </div>
-                    <div className="searching">
-                        <Stack spacing={3}>
-
-                            <Input
-                                value={value}
-                                onChange={handleChange}
-                                variant='filled'
-                                placeholder='Pencarian'
-
-                            />
-                        </Stack>
-                        <Button
-                            colorScheme='blue'
-                            className="searching-botton"
-                            size='sm'
-                            onClick={() => {
-                                setPencarian(value)
-                            }}
-                        >
-                            Cari
-                        </Button>
-
-                    </div>
-                </div>
-            </div>
-            <div className="show-all-news">
-
-                {dataPerPage != null && categoryList == "" && pencarian == '' ?
-
-                    dataPerPage.data.filter((val) => {
-                        if (pencarian == '') {
-                            return val
-                        } else if (val.title.toLowerCase().includes(pencarian.toLocaleLowerCase())) {
-                            return val
-                        }
-                    }).map((placement) => (
-                        <Link
-                            to={{
-                                pathname: '/article/' + placement.id
-                            }}
-                            className="show-news"
-                        >
-
-                            <Image
-                                src={placement.image_file_data}
-                                className='image-in-articles'
-                            />
-                            <div className="text-in-article">
-                                <Text
-                                    className="text-title-article"
-                                    marginBottom={5}
-                                >
-                                    {placement.title}
-
-                                </Text>
-
-                                <Text
-                                    className="text-shord-desc"
-                                >
-                                    {placement.intro}
-                                </Text>
-                            </div>
-                        </Link>
-                    )) : null
-                }
-                {newsCard != null && categoryList == "" && pencarian != '' ?
-
-                    newsCard.filter((val) => {
-                        if (pencarian == '') {
-                            return val
-                        } else if (val.title.toLowerCase().includes(pencarian.toLocaleLowerCase())) {
-                            return val
-                        }
-                    }).map((placement) => (
-                        <Link
-                            to={{
-                                pathname: '/article/' + placement.id
-                            }}
-                            className="show-news"
-                        >
-
-                            <Image
-                                src={placement.image_file_data}
-                                className='image-in-articles'
-                            />
-                            <div className="text-in-article">
-                                <Text
-                                    className="text-title-article"
-                                    marginBottom={5}
-                                >
-                                    {placement.title}
-
-                                </Text>
-
-                                <Text
-                                    className="text-shord-desc"
-                                >
-                                    {placement.intro}
-                                </Text>
-                            </div>
-                        </Link>
-                    )) : null
-                }
-                {
-                    categoryList != '' && newChardWithCategory != null ?
-                        newChardWithCategory.filter((val) => {
-                            if (pencarian == '') {
-                                return val
-                            } else if (val.title.toLowerCase().includes(pencarian.toLocaleLowerCase())) {
-                                return val
-                            }
-                        }).map((placement) => (
-                            <Link
-                                to={{
-
-                                    pathname: '/article/' + placement.id
-                                }}
-                                className="show-news"
-                            >
-
-                                <Image
-                                    src={placement.image_file_data}
-                                    className='image-in-articles'
-                                />
-                                <div className="text-in-article">
-                                    <Text
-                                        className="text-title-article"
-                                        marginBottom={5}
-                                    >
-                                        {placement.title}
-
-                                    </Text>
-
-                                    <Text
-                                        className="text-shord-desc"
-                                    >
-                                        {placement.intro}
-                                    </Text>
-                                </div>
-                            </Link>
-                        )) : null
-                }
-
-            </div>
             {
-                dataPerPage != null && pencarian == '' && categoryList == "" ?
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" onClick={() => {
-                                setPage(1)
-                            }}>Pertama</a></li>
-                            {
-                                (page - 1) != 0 ? <li class="page-item"><a class="page-link" onClick={() => {
-                                    setPage(page - 1)
-                                }}>{page - 1}</a></li> : null
-                            }
-                            <li class="page-item"><a class="page-link" >{page}</a></li>
-                            {
-                                (page + 1) <= dataPerPage.last_page ? <li class="page-item"><a class="page-link" onClick={() => {
-                                    setPage(page + 1)
-                                }}>{page + 1}</a></li> : null
-                            }
-                            <li class="page-item"><a class="page-link" onClick={() => {
-                                setPage(dataPerPage.last_page)
-                            }}>Terakhir</a></li>
-                        </ul>
-                    </nav>
-                    : null
+                newsCard == null ? <Loading /> :
+                    <>
+                        <div className="title-galery-foto-Page">
+                            Artikel Terkini
+                        </div>
+                        <div className="searching-and-category">
+                            <div className="layout-searching-and-category">
+                                <div className="category">
+                                    <Menu>
+                                        <MenuButton
+                                            px={2}
+                                            py={2}
+                                            transition='all 0.2s'
+                                            borderRadius='2xl'
+                                            bgColor={'gray.400'}
+                                            _hover={{ bg: 'gray.400' }}
+                                            _expanded={{ bg: 'blue.400' }}
+                                            _focus={{ boxShadow: 'outline' }}
+                                            className='text-in-class'
+                                        >
+                                            {
+                                                categoryList == '' ? 'Semua' : categoryList
+                                            }
+                                        </MenuButton>
+                                        <MenuList>
+                                            <MenuItem className='text-in-class' onClick={() => {
+                                                setCategoryList('')
+                                            }}>Semua</MenuItem>
+                                            {
+                                                category != null ? category.map((index) => (
+                                                    <MenuItem className='text-in-class' onClick={() => {
+                                                        setCategoryList(index.slug)
+                                                        getNewCategory(index.slug)
+                                                    }}>{index.nama_kategori}</MenuItem>
+                                                ))
 
+                                                    : <MenuItem className='text-in-class'>LOADING</MenuItem>
+                                            }
+
+                                        </MenuList>
+                                    </Menu>
+                                </div>
+                                <div className="searching">
+                                    <Stack spacing={3}>
+
+                                        <Input
+                                            value={value}
+                                            onChange={handleChange}
+                                            variant='filled'
+                                            placeholder='Pencarian'
+
+                                        />
+                                    </Stack>
+                                    <Button
+                                        colorScheme='blue'
+                                        className="searching-botton"
+                                        size='sm'
+                                        onClick={() => {
+                                            setPencarian(value)
+                                        }}
+                                    >
+                                        Cari
+                                    </Button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div className="show-all-news">
+
+                            {dataPerPage != null && categoryList == "" && pencarian == '' ?
+
+                                dataPerPage.data.filter((val) => {
+                                    if (pencarian == '') {
+                                        return val
+                                    } else if (val.title.toLowerCase().includes(pencarian.toLocaleLowerCase())) {
+                                        return val
+                                    }
+                                }).map((placement) => (
+                                    <Link
+                                        to={{
+                                            pathname: '/article/' + placement.id
+                                        }}
+                                        className="show-news"
+                                    >
+
+                                        <Image
+                                            src={placement.image_file_data}
+                                            className='image-in-articles'
+                                        />
+                                        <div className="text-in-article">
+                                            <Text
+                                                className="text-title-article"
+                                                marginBottom={5}
+                                            >
+                                                {placement.title}
+
+                                            </Text>
+
+                                            <Text
+                                                className="text-shord-desc"
+                                            >
+                                                {placement.intro}
+                                            </Text>
+                                        </div>
+                                    </Link>
+                                )) : null
+                            }
+                            {newsCard != null && categoryList == "" && pencarian != '' ?
+
+                                newsCard.filter((val) => {
+                                    if (pencarian == '') {
+                                        return val
+                                    } else if (val.title.toLowerCase().includes(pencarian.toLocaleLowerCase())) {
+                                        return val
+                                    }
+                                }).map((placement) => (
+                                    <Link
+                                        to={{
+                                            pathname: '/article/' + placement.id
+                                        }}
+                                        className="show-news"
+                                    >
+
+                                        <Image
+                                            src={placement.image_file_data}
+                                            className='image-in-articles'
+                                        />
+                                        <div className="text-in-article">
+                                            <Text
+                                                className="text-title-article"
+                                                marginBottom={5}
+                                            >
+                                                {placement.title}
+
+                                            </Text>
+
+                                            <Text
+                                                className="text-shord-desc"
+                                            >
+                                                {placement.intro}
+                                            </Text>
+                                        </div>
+                                    </Link>
+                                )) : null
+                            }
+                            {
+                                categoryList != '' && newChardWithCategory != null ?
+                                    newChardWithCategory.filter((val) => {
+                                        if (pencarian == '') {
+                                            return val
+                                        } else if (val.title.toLowerCase().includes(pencarian.toLocaleLowerCase())) {
+                                            return val
+                                        }
+                                    }).map((placement) => (
+                                        <Link
+                                            to={{
+
+                                                pathname: '/article/' + placement.id
+                                            }}
+                                            className="show-news"
+                                        >
+
+                                            <Image
+                                                src={placement.image_file_data}
+                                                className='image-in-articles'
+                                            />
+                                            <div className="text-in-article">
+                                                <Text
+                                                    className="text-title-article"
+                                                    marginBottom={5}
+                                                >
+                                                    {placement.title}
+
+                                                </Text>
+
+                                                <Text
+                                                    className="text-shord-desc"
+                                                >
+                                                    {placement.intro}
+                                                </Text>
+                                            </div>
+                                        </Link>
+                                    )) : null
+                            }
+
+                        </div>
+                        {
+                            dataPerPage != null && pencarian == '' && categoryList == "" ?
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        <li class="page-item"><a class="page-link" onClick={() => {
+                                            setPage(1)
+                                        }}>Pertama</a></li>
+                                        {
+                                            (page - 1) != 0 ? <li class="page-item"><a class="page-link" onClick={() => {
+                                                setPage(page - 1)
+                                            }}>{page - 1}</a></li> : null
+                                        }
+                                        <li class="page-item"><a class="page-link" >{page}</a></li>
+                                        {
+                                            (page + 1) <= dataPerPage.last_page ? <li class="page-item"><a class="page-link" onClick={() => {
+                                                setPage(page + 1)
+                                            }}>{page + 1}</a></li> : null
+                                        }
+                                        <li class="page-item"><a class="page-link" onClick={() => {
+                                            setPage(dataPerPage.last_page)
+                                        }}>Terakhir</a></li>
+                                    </ul>
+                                </nav>
+                                : null
+
+                        }
+
+                    </>
             }
+
+
 
         </div>
     );

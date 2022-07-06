@@ -4,6 +4,7 @@ import '../style/fotoPage.css'
 import { Card, Button } from "react-bootstrap";
 import { FaAngleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Loading from "../Componen/loading/loading";
 
 const FotoPage = () => {
     const [recomendation, getRecomentdation] = useState(null)
@@ -41,56 +42,64 @@ const FotoPage = () => {
     }, [])
     return (
         <div className="all-galery-foto-page">
-            <div className="title-galery-foto-Page">
-                Galery Foto
-            </div>
-            <div className="main-galery-foto-page">
-                <div className="contain-galery-foto">
-                    <div className="galeri-card-foto">
-                        {
-                            contain != null ? contain.map((index) => (
-                                <Link to={{
-                                    pathname: "/image-gallery/" + index.slug
-                                }}>
-                                    <Card style={{ width: '18rem' }} className='margin-foto'>
-                                        <Card.Img variant="top" src={index.image_gallery_item[0].image_file_data} className="image-foto" />
-                                        <Card.Body className="body-card">
-                                            <Card.Title className="line-clamp">{index.name}</Card.Title>
-                                            <Card.Text className="text-card">{index.description}</Card.Text>
+            {
+                contain == null ? <Loading /> :
 
-                                        </Card.Body>
-                                    </Card>
-                                </Link>
-                            )) : <p>loading</p>
-                        }
+                    <>
+                        <div className="title-galery-foto-Page">
+                            Galery Foto
+                        </div>
+                        <div className="main-galery-foto-page">
+                            <div className="contain-galery-foto">
+                                <div className="galeri-card-foto">
+                                    {
+                                        contain != null ? contain.map((index) => (
+                                            <Link to={{
+                                                pathname: "/image-gallery/" + index.slug
+                                            }}>
+                                                <Card style={{ width: '18rem' }} className='margin-foto'>
+                                                    <Card.Img variant="top" src={index.image_gallery_item[0].image_file_data} className="image-foto" />
+                                                    <Card.Body className="body-card">
+                                                        <Card.Title className="line-clamp">{index.name}</Card.Title>
+                                                        <Card.Text className="text-card">{index.description}</Card.Text>
 
-                    </div>
-                    <div className="recomentation-contain-another">
-                        <div className="border-recomendarion-another">
-                            <div className="tittle-recomend-another">
-                                Rekomendasi Video
-                            </div>
-                            {
-                                recomendation != null ? recomendation.map((index) => (
-                                    <Link className="box-recomend-another" to={{
-                                        pathname: "/video-gallery/" + index.slug
-                                    }}>
-                                        <article className="text-recomend-another">
-                                            {index.name}
-                                        </article>
-                                        <div>
-                                            <FaAngleRight color="rgb(33, 93, 121)" />
+                                                    </Card.Body>
+                                                </Card>
+                                            </Link>
+                                        )) : <p>loading</p>
+                                    }
+
+                                </div>
+                                <div className="recomentation-contain-another">
+                                    <div className="border-recomendarion-another">
+                                        <div className="tittle-recomend-another">
+                                            Rekomendasi Video
                                         </div>
-                                    </Link>
-                                )) : <p>Loading</p>
-                            }
+                                        {
+                                            recomendation != null ? recomendation.map((index) => (
+                                                <Link className="box-recomend-another" to={{
+                                                    pathname: "/video-gallery/" + index.slug
+                                                }}>
+                                                    <article className="text-recomend-another">
+                                                        {index.name}
+                                                    </article>
+                                                    <div>
+                                                        <FaAngleRight color="rgb(33, 93, 121)" />
+                                                    </div>
+                                                </Link>
+                                            )) : <p>Loading</p>
+                                        }
 
+
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
-                    </div>
-                </div>
 
-            </div>
+                    </>
+            }
+
         </div>
     )
 

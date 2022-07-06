@@ -3,6 +3,7 @@ import { Text } from "@chakra-ui/react";
 import axios from "axios";
 import { useParams } from "react-router";
 import '../style/showDocumentPage.css'
+import Loading from "../Componen/loading/loading";
 
 const ShowDocumentPage = () => {
 
@@ -29,31 +30,38 @@ const ShowDocumentPage = () => {
 
     return (
         <div className="all-galery-foto-page">
-
-            <div className="title-galery-foto-Page">
-                {
-                    contain != null ? contain.dokumen_file_name : 'LOADING'
-                }
-            </div>
             {
-                contain != null ?
-                    <div className="sdp-layout">
-                        <article className="sdp-description">
-                            {contain.description_dokumen}
-                        </article>
+                contain == null ? <Loading /> :
 
-                        <div className="spd-show-document">
-                            <iframe
-                                src={"data:application/pdf;base64," + contain.dokumen_file_data}
-                                frameBorder="0"
-                                scrolling="auto"
-                                height="100%"
-                                width="100%"
-                            ></iframe>
+                    <>
+
+                        <div className="title-galery-foto-Page">
+                            {
+                                contain != null ? contain.dokumen_file_name : 'LOADING'
+                            }
                         </div>
-                    </div>
-                    : <p>LOADING</p>
+                        {
+                            contain != null ?
+                                <div className="sdp-layout">
+                                    <article className="sdp-description">
+                                        {contain.description_dokumen}
+                                    </article>
 
+                                    <div className="spd-show-document">
+                                        <iframe
+                                            src={"data:application/pdf;base64," + contain.dokumen_file_data}
+                                            frameBorder="0"
+                                            scrolling="auto"
+                                            height="100%"
+                                            width="100%"
+                                        ></iframe>
+                                    </div>
+                                </div>
+                                : <p>LOADING</p>
+
+                        }
+
+                    </>
             }
 
         </div>

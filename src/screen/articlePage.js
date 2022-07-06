@@ -5,6 +5,7 @@ import axios from "axios";
 import { useParams } from "react-router";
 import '../style/articlePage.css'
 import { Link } from "react-router-dom";
+import Loading from "../Componen/loading/loading";
 
 const ArticlePage = () => {
 
@@ -59,54 +60,60 @@ const ArticlePage = () => {
 
     return (
         <div className="all-article-page">
-            <div className="margin-article-page">
-                {
-                    articleMain != null ? <div className="main-article">
-                        <div className='title-article-articlepage'>
-                            <article className="text-title-articlepage">
-                                {articleMain.title}
-                            </article>
-                        </div>
-                        <div className="image-article-articlepage">
-                            <Image
-                                src={articleMain.image_file_data}
-                                alt='Dan Abramov'
-                                className="image-articlepage"
-                            />
+            {
+                articleMain == null ? <Loading /> :
 
-                        </div>
-                        <div className="text-main-article-articlepage"
-                            dangerouslySetInnerHTML={innerHTMLCool()}
-                        />
-
-                    </div>
-                        : <p>Loading</p>
-                }
-                <div className="recomend-article">
-                    <div className="tittle-recomend-another">
-                        Berita Lainnya
-                    </div>
-                    {
-                        newsCard != null ? newsCard.map((index) => (
-                            <Link
-                                to={{
-                                    pathname: '/article/' + index.id
-                                }}
-                                className="box-recomend-another"
-                            >
-                                <article className="text-recomend-another">
-                                    {index.title}
-                                </article>
-                                <div>
-                                    <FaAngleRight color="rgb(33, 93, 121)" />
+                    <div className="margin-article-page">
+                        {
+                            articleMain != null ? <div className="main-article">
+                                <div className='title-article-articlepage'>
+                                    <article className="text-title-articlepage">
+                                        {articleMain.title}
+                                    </article>
                                 </div>
-                            </Link>
-                        )) : <p>Loading</p>
-                    }
+                                <div className="image-article-articlepage">
+                                    <Image
+                                        src={articleMain.image_file_data}
+                                        alt='Dan Abramov'
+                                        className="image-articlepage"
+                                    />
+
+                                </div>
+                                <div className="text-main-article-articlepage"
+                                    dangerouslySetInnerHTML={innerHTMLCool()}
+                                />
+
+                            </div>
+                                : <p>Loading</p>
+                        }
+                        <div className="recomend-article">
+                            <div className="tittle-recomend-another">
+                                Artikel Lainnya
+                            </div>
+                            {
+                                newsCard != null ? newsCard.map((index) => (
+                                    <Link
+                                        to={{
+                                            pathname: '/article/' + index.id
+                                        }}
+                                        className="box-recomend-another"
+                                    >
+                                        <article className="text-recomend-another">
+                                            {index.title}
+                                        </article>
+                                        <div>
+                                            <FaAngleRight color="rgb(33, 93, 121)" />
+                                        </div>
+                                    </Link>
+                                )) : <p>Loading</p>
+                            }
 
 
-                </div>
-            </div>
+                        </div>
+                    </div>
+
+            }
+
         </div>
     )
 

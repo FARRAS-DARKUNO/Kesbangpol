@@ -15,6 +15,8 @@ import {
 } from '@chakra-ui/react'
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import Loading from "../Componen/loading/loading";
+
 const ContainFotoPage = () => {
     const [recomendation, getRecomentdation] = useState(null)
     const [contain, getContain] = useState(null)
@@ -77,65 +79,74 @@ const ContainFotoPage = () => {
                 </ModalContent>
             </Modal>
 
-            <div className="all-galery-foto-page">
-                {
-                    contain != null ?
-                        <div className="title-galery-foto-Page">
-                            {contain[0].name_gallery}
-                        </div>
-                        : <p>loading</p>
-                }
+            {
+                contain == null ? <Loading /> :
 
-                <div className="main-galery-foto-page">
-                    <div className="contain-galery-foto">
-                        <div className="galeri-card-foto">
+                    <>
+                        <div className="all-galery-foto-page">
                             {
-                                contain != null ? contain.map((index) => (
-                                    <Card style={{ width: '18rem' }} className='margin-foto' onClick={() => {
-                                        setImageFile(index.image_file_data)
-                                        setNameImage(index.description_per_image)
-                                        onOpen()
-                                    }}>
-                                        <Card.Img variant="top" src={index.image_file_data} className="image-foto" />
-                                        <Card.Body className="body-card">
-                                            <Card.Title className="line-clamp">{index.description_per_image}</Card.Title>
-                                            <Card.Text className="text-card">{index.description_gallery}</Card.Text>
-
-                                        </Card.Body>
-                                    </Card>
-
-                                )) : <p>loading</p>
+                                contain != null ?
+                                    <div className="title-galery-foto-Page">
+                                        {contain[0].name_gallery}
+                                    </div>
+                                    : <p>loading</p>
                             }
 
-                        </div>
-                        <div className="recomentation-contain-another">
-                            <div className="border-recomendarion-another">
-                                <div className="tittle-recomend-another">
-                                    Rekomendasi Foto Lainnya
+                            <div className="main-galery-foto-page">
+                                <div className="contain-galery-foto">
+                                    <div className="galeri-card-foto">
+                                        {
+                                            contain != null ? contain.map((index) => (
+                                                <Card style={{ width: '18rem' }} className='margin-foto' onClick={() => {
+                                                    setImageFile(index.image_file_data)
+                                                    setNameImage(index.description_per_image)
+                                                    onOpen()
+                                                }}>
+                                                    <Card.Img variant="top" src={index.image_file_data} className="image-foto" />
+                                                    <Card.Body className="body-card">
+                                                        <Card.Title className="line-clamp">{index.description_per_image}</Card.Title>
+                                                        <Card.Text className="text-card">{index.description_gallery}</Card.Text>
+
+                                                    </Card.Body>
+                                                </Card>
+
+                                            )) : <p>loading</p>
+                                        }
+
+                                    </div>
+                                    <div className="recomentation-contain-another">
+                                        <div className="border-recomendarion-another">
+                                            <div className="tittle-recomend-another">
+                                                Rekomendasi Foto Lainnya
+                                            </div>
+                                            {
+                                                recomendation != null ? recomendation.map((index) => (
+                                                    <Link className="box-recomend-another" to={{
+                                                        pathname: "/image-gallery/" + index.slug
+                                                    }}>
+                                                        <article className="text-recomend-another">
+                                                            {index.name}
+                                                        </article>
+                                                        <di>
+                                                            <FaAngleRight color="rgb(33, 93, 121)" />
+                                                        </di>
+
+                                                    </Link>
+                                                )) : <p>Loading</p>
+                                            }
+
+
+                                        </div>
+                                    </div>
                                 </div>
-                                {
-                                    recomendation != null ? recomendation.map((index) => (
-                                        <Link className="box-recomend-another" to={{
-                                            pathname: "/image-gallery/" + index.slug
-                                        }}>
-                                            <article className="text-recomend-another">
-                                                {index.name}
-                                            </article>
-                                            <di>
-                                                <FaAngleRight color="rgb(33, 93, 121)" />
-                                            </di>
-
-                                        </Link>
-                                    )) : <p>Loading</p>
-                                }
-
 
                             </div>
                         </div>
-                    </div>
 
-                </div>
-            </div>
+                    </>
+            }
+
+
         </>
     )
 

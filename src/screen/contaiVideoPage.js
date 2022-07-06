@@ -16,6 +16,9 @@ import {
 } from '@chakra-ui/react'
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import Loading from "../Componen/loading/loading";
+
+
 
 const ContainVideoPage = () => {
     const [recomendation, getRecomentdation] = useState(null)
@@ -86,68 +89,74 @@ const ContainVideoPage = () => {
                     </ModalFooter>
                 </ModalContent>
             </Modal>
-
-            <div className="all-galery-foto-page">
-                {
-                    contain != null ?
-                        <div className="title-galery-foto-Page">
-                            {contain[0].name_gallery}
-                        </div>
-                        : <p>loading</p>
-                }
-
-                <div className="main-galery-foto-page">
-                    <div className="contain-galery-foto">
-                        <div className="galeri-card-foto">
+            {
+                contain == null ? <Loading /> :
+                    <>
+                        <div className="all-galery-foto-page">
                             {
-                                contain != null ? contain.map((index) => (
-                                    <Card style={{ width: '18rem' }} className='margin-foto' onClick={() => {
-                                        console.log('astagfirullah')
-                                        console.log(linkYoutube + index.video_url)
-                                        setlink(index.video_url)
-                                        setNameImage(index.description_per_image)
-                                        onOpen()
-                                    }}>
-                                        <Card.Img variant="top" src={index.thumbnail_url} className="image-foto" />
-                                        <Card.Body className="body-card">
-                                            <Card.Title className="line-clamp">{index.name_gallery}</Card.Title>
-                                            <Card.Text className="text-card">{index.description_gallery}</Card.Text>
-
-                                        </Card.Body>
-                                    </Card>
-
-                                )) : <p>loading</p>
+                                contain != null ?
+                                    <div className="title-galery-foto-Page">
+                                        {contain[0].name_gallery}
+                                    </div>
+                                    : <p>loading</p>
                             }
 
-                        </div>
-                        <div className="recomentation-contain-another">
-                            <div className="border-recomendarion-another">
-                                <div className="tittle-recomend-another">
-                                    Rekomendasi Video Lainnya
+                            <div className="main-galery-foto-page">
+                                <div className="contain-galery-foto">
+                                    <div className="galeri-card-foto">
+                                        {
+                                            contain != null ? contain.map((index) => (
+                                                <Card style={{ width: '18rem' }} className='margin-foto' onClick={() => {
+                                                    console.log('astagfirullah')
+                                                    console.log(linkYoutube + index.video_url)
+                                                    setlink(index.video_url)
+                                                    setNameImage(index.description_per_image)
+                                                    onOpen()
+                                                }}>
+                                                    <Card.Img variant="top" src={index.thumbnail_url} className="image-foto" />
+                                                    <Card.Body className="body-card">
+                                                        <Card.Title className="line-clamp">{index.name_gallery}</Card.Title>
+                                                        <Card.Text className="text-card">{index.description_gallery}</Card.Text>
+
+                                                    </Card.Body>
+                                                </Card>
+
+                                            )) : <p>loading</p>
+                                        }
+
+                                    </div>
+                                    <div className="recomentation-contain-another">
+                                        <div className="border-recomendarion-another">
+                                            <div className="tittle-recomend-another">
+                                                Rekomendasi Video Lainnya
+                                            </div>
+                                            {
+                                                recomendation != null ? recomendation.map((index) => (
+                                                    <Link className="box-recomend-another" to={{
+                                                        pathname: "/video-gallery/" + index.slug
+                                                    }}>
+                                                        <article className="text-recomend-another">
+                                                            {index.name}
+                                                        </article>
+                                                        <di>
+                                                            <FaAngleRight color="rgb(33, 93, 121)" />
+                                                        </di>
+
+                                                    </Link>
+                                                )) : <p>Loading</p>
+                                            }
+
+
+                                        </div>
+                                    </div>
                                 </div>
-                                {
-                                    recomendation != null ? recomendation.map((index) => (
-                                        <Link className="box-recomend-another" to={{
-                                            pathname: "/video-gallery/" + index.slug
-                                        }}>
-                                            <article className="text-recomend-another">
-                                                {index.name}
-                                            </article>
-                                            <di>
-                                                <FaAngleRight color="rgb(33, 93, 121)" />
-                                            </di>
-
-                                        </Link>
-                                    )) : <p>Loading</p>
-                                }
-
 
                             </div>
                         </div>
-                    </div>
+                    </>
+            }
 
-                </div>
-            </div>
+
         </>
     )
 

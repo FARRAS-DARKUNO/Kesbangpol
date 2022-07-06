@@ -12,6 +12,7 @@ import '../style/mainPage.css'
 import CardArticle from "../Componen/cardArticle/cardArticle";
 import CardAparat from "../Componen/cardAparat/cardAparat";
 import CardArticleReal from "../Componen/cardArticleReal/cardArticleReal";
+import Loading from "../Componen/loading/loading";
 
 const MainPage = () => {
 
@@ -89,143 +90,149 @@ const MainPage = () => {
     return (
 
         <div className="layout">
-            <Carousel activeIndex={index} onSelect={handleSelect} className="margin ">
-                {newsCard != null ? newsCard.map((placement) => (
-                    <Carousel.Item >
-                        <img
-                            className="image-deerah"
-                            src={placement.image_file_data}
-                            alt="First slide"
-                        />
-                        <Carousel.Caption className="carousel-Caption">
-                            <Link className="article-caption"
-                                to={{
-                                    pathname: '/news/' + placement.id
-                                }}
-                            >{placement.title}</Link>
-                            <br />
+            {
+                newsCard == null || detailData == null ? <Loading /> :
 
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                )) : <p>Loading</p>}
-            </Carousel>
+                    <>
 
-            <div className="layout-aparat-putih">
-                {
-                    detailData != null ?
-                        <div className="article">
-                            <div className="sub-article">
-                                <div className="title-real-in-main-page">
-                                    <article className="title-article">
-                                        {detailData.singkatan_instansi}
-                                    </article>
-                                </div>
-                            </div>
-                            <div className="layout-documen-and-tentang">
-                                <div className="detail-main-layout">
-                                    <Image src={detailData.logo_instansi} className='logo-instansi' />
-                                    <div className="tentang-detail-main">
-                                        <article className="title-detail-mainan">{detailData.nama_instansi}</article>
-                                        <article className="text-detail-mainan"> {detailData.tentang}</article>
-                                    </div>
-                                </div>
-                                <div className="document-main-layout">
-                                    <div className="border-recomendarion-another">
-                                        <div className="tittle-recomend-another">
-                                            Dokumen Terbaru
+                        <Carousel activeIndex={index} onSelect={handleSelect} className="margin ">
+                            {newsCard != null ? newsCard.map((placement) => (
+                                <Carousel.Item >
+                                    <img
+                                        className="image-deerah"
+                                        src={placement.image_file_data}
+                                        alt="First slide"
+                                    />
+                                    <Carousel.Caption className="carousel-Caption">
+                                        <Link className="article-caption"
+                                            to={{
+                                                pathname: '/news/' + placement.id
+                                            }}
+                                        >{placement.title}</Link>
+                                        <br />
+
+                                    </Carousel.Caption>
+                                </Carousel.Item>
+                            )) : <p>Loading</p>}
+                        </Carousel>
+
+                        <div className="layout-aparat-putih">
+                            {
+                                detailData != null ?
+                                    <div className="article">
+                                        <div className="sub-article">
+                                            <div className="title-real-in-main-page">
+                                                <article className="title-article">
+                                                    {detailData.singkatan_instansi}
+                                                </article>
+                                            </div>
                                         </div>
-                                        {
-                                            contain != null ? contain.map((index) => (
-                                                <Link className="box-recomend-another" to={{
-                                                    pathname: "/dokumen/" + index.slug
-                                                }}>
-                                                    <article className="text-recomend-another">
-                                                        {index.name}
-                                                    </article>
-                                                    <di>
-                                                        <FaAngleRight color="rgb(33, 93, 121)" />
-                                                    </di>
+                                        <div className="layout-documen-and-tentang">
+                                            <div className="detail-main-layout">
+                                                <Image src={detailData.logo_instansi} className='logo-instansi' />
+                                                <div className="tentang-detail-main">
+                                                    <article className="title-detail-mainan">{detailData.nama_instansi}</article>
+                                                    <article className="text-detail-mainan"> {detailData.tentang}</article>
+                                                </div>
+                                            </div>
+                                            <div className="document-main-layout">
+                                                <div className="border-recomendarion-another">
+                                                    <div className="tittle-recomend-another">
+                                                        Dokumen Terbaru
+                                                    </div>
+                                                    {
+                                                        contain != null ? contain.map((index) => (
+                                                            <Link className="box-recomend-another" to={{
+                                                                pathname: "/dokumen/" + index.slug
+                                                            }}>
+                                                                <article className="text-recomend-another">
+                                                                    {index.name}
+                                                                </article>
+                                                                <di>
+                                                                    <FaAngleRight color="rgb(33, 93, 121)" />
+                                                                </di>
 
-                                                </Link>
-                                            )) : <p>Loading</p>
-                                        }
+                                                            </Link>
+                                                        )) : <p>Loading</p>
+                                                    }
 
 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    : <p>LOADING</p>
+                            }
+                        </div>
+                        <div className="layout-aparat">
+                            <div className="article">
+                                <div className="sub-article">
+                                    <div className="title-real-in-main-page">
+                                        <article className="title-article">
+                                            Artikel Terbaru
+                                        </article>
+                                    </div>
+
+                                    <Link className="see-more-botton"
+                                        to={'/article'}>
+                                        <div className="icon-div-center">
+                                            <BiChevronsRight color="#ffff" size={24} />
+                                        </div>
+                                        <article className="see-more">
+                                            Lihat Lengkap
+                                        </article>
+                                    </Link>
+
+                                </div>
+
+                                <CardArticleReal />
+
+                            </div>
+                        </div>
+                        <div className="layout-aparat-putih">
+                            <div className="article">
+                                <div className="sub-article">
+                                    <div className="title-real-in-main-page">
+                                        <article className="title-article">
+                                            Struktur
+                                        </article>
                                     </div>
                                 </div>
+
+                                <CardAparat />
+
                             </div>
                         </div>
-                        : <p>LOADING</p>
-                }
-            </div>
-            <div className="layout-aparat">
-                <div className="article">
-                    <div className="sub-article">
-                        <div className="title-real-in-main-page">
-                            <article className="title-article">
-                                Artikel Terbaru
-                            </article>
-                        </div>
 
-                        <Link className="see-more-botton"
-                            to={'/article'}>
-                            <div className="icon-div-center">
-                                <BiChevronsRight color="#ffff" size={24} />
+                        <div className="layout-aparat">
+                            <div className="article">
+                                <div className="sub-article">
+                                    <div className="title-real-in-main-page">
+                                        <article className="title-article">
+                                            Berita Terbaru
+                                        </article>
+                                    </div>
+                                    <Link className="see-more-botton"
+                                        to={'/news'}
+                                    >
+                                        <div className="icon-div-center">
+                                            <BiChevronsRight color="#ffff" size={24} />
+                                        </div>
+                                        <article className="see-more">
+                                            Lihat Lengkap
+                                        </article>
+                                    </Link>
+                                </div>
+
+                                <CardArticle />
+
                             </div>
-                            <article className="see-more">
-                                Lihat Lengkap
-                            </article>
-                        </Link>
-
-                    </div>
-
-                    <CardArticleReal />
-
-                </div>
-            </div>
-            <div className="layout-aparat-putih">
-                <div className="article">
-                    <div className="sub-article">
-                        <div className="title-real-in-main-page">
-                            <article className="title-article">
-                                Struktur
-                            </article>
                         </div>
-                    </div>
 
-                    <CardAparat />
+                    </>
+            }
 
-                </div>
-            </div>
-
-            <div className="layout-aparat">
-                <div className="article">
-                    <div className="sub-article">
-                        <div className="title-real-in-main-page">
-                            <article className="title-article">
-                                Berita Terbaru
-                            </article>
-                        </div>
-                        <Link className="see-more-botton"
-                            to={'/news'}
-                        >
-                            <div className="icon-div-center">
-                                <BiChevronsRight color="#ffff" size={24} />
-                            </div>
-                            <article className="see-more">
-                                Lihat Lengkap
-                            </article>
-                        </Link>
-                    </div>
-
-                    <CardArticle />
-
-                </div>
-            </div>
         </div>
-
-
-
     );
 }
 

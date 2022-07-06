@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 import '../style/documentPage.css'
+import Loading from "../Componen/loading/loading";
 
 const DocumentPage = () => {
 
@@ -28,34 +29,39 @@ const DocumentPage = () => {
 
     return (
         <div className="all-galery-foto-page">
-
-            <div className="title-galery-foto-Page">
-                Document
-            </div>
-            <div className="documen-layout">
-                <div className="domumen-contain">
-                    <article className="document-tittle">
-                        File Penting
-                    </article>
-                    {
-                        contain != null ? contain.map((index) => (
-                            <Link
-                                to={{
-                                    pathname: "/dokumen/" + index.slug
-                                }}
-                                className="documen">
-                                <article className="title-document">
-                                    {index.dokumen_item[0].dokumen_file_name}
+            {
+                contain == null ? <Loading /> :
+                    <>
+                        <div className="title-galery-foto-Page">
+                            Document
+                        </div>
+                        <div className="documen-layout">
+                            <div className="domumen-contain">
+                                <article className="document-tittle">
+                                    File Penting
                                 </article>
-                                <article className="sub-tittle-document">
-                                    {index.description}
-                                </article>
-                            </Link>
-                        )) : <p>Loading</p>
-                    }
+                                {
+                                    contain != null ? contain.map((index) => (
+                                        <Link
+                                            to={{
+                                                pathname: "/dokumen/" + index.slug
+                                            }}
+                                            className="documen">
+                                            <article className="title-document">
+                                                {index.dokumen_item[0].dokumen_file_name}
+                                            </article>
+                                            <article className="sub-tittle-document">
+                                                {index.description}
+                                            </article>
+                                        </Link>
+                                    )) : <p>Loading</p>
+                                }
 
-                </div>
-            </div>
+                            </div>
+                        </div>
+                    </>
+            }
+
         </div>
     )
 }
