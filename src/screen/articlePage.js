@@ -10,10 +10,63 @@ import Loading from "../Componen/loading/loading";
 const ArticlePage = () => {
 
     const { id } = useParams()
-    // console.log('hallo semua')
-
     const [newsCard, getNewsCard] = useState(null)
     const [articleMain, getArticleMain] = useState(null)
+
+    const getIpAdressOS = async () => {
+
+        await axios.get("https://geolocation-db.com/json/")
+            .then(function (res) {
+                console.log('ip address');
+                console.log(res.data.IPv4);
+
+                let userAgent = window.navigator.userAgent,
+                    platform = window.navigator?.userAgentData?.platform || window.navigator.platform,
+                    macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+                    windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+                    iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+                    os = null;
+
+                if (macosPlatforms.indexOf(platform) !== -1) {
+                    os = 'Mac OS';
+                } else if (iosPlatforms.indexOf(platform) !== -1) {
+                    os = 'iOS';
+                } else if (windowsPlatforms.indexOf(platform) !== -1) {
+                    os = 'Windows';
+                } else if (/Android/.test(userAgent)) {
+                    os = 'Android';
+                } else if (/Linux/.test(platform)) {
+                    os = 'Linux';
+                }
+                console.log('deteksi OS')
+                console.log(os)
+                console.log('id')
+                console.log(id)
+
+                let objectPassing = {
+                    artikel_id: id,
+                    ip: res.data.IPv4,
+                    device: os
+                }
+
+                postingData(objectPassing)
+
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+    }
+
+    const postingData = (objectPassing) => {
+        axios.post('http://adminmesuji.embuncode.com/api/article/hit?artikel_id=' + objectPassing.artikel_id + '&ip=' + objectPassing.ip + '&device=' + objectPassing.device)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 
     const getRecomendation = async () => {
         await axios.get("http://adminmesuji.embuncode.com/api/article?instansi_id=2")
@@ -53,6 +106,7 @@ const ArticlePage = () => {
         getArticleMain(null)
         getRecomendation()
         getArticleDetail()
+        getIpAdressOS()
         return () => {
             getArticleMain(null)
         };
