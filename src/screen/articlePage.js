@@ -6,6 +6,10 @@ import { useParams } from "react-router";
 import '../style/articlePage.css'
 import { Link } from "react-router-dom";
 import Loading from "../Componen/loading/loading";
+import {
+    articleApi,
+    artikelApiDetail,
+} from "../util/api";
 
 const ArticlePage = () => {
 
@@ -69,7 +73,7 @@ const ArticlePage = () => {
     }
 
     const getRecomendation = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/article?instansi_id=2")
+        await axios.get(articleApi)
             .then(function (response) {
                 getNewsCard(response.data.data.data)
                 // console.log(response.data.data.data[0]);
@@ -83,7 +87,7 @@ const ArticlePage = () => {
     console.log('INI ID NYA WOI : ' + id)
 
     const getArticleDetail = async () => {
-        let address = 'http://adminmesuji.embuncode.com/api/article/' + id
+        let address = artikelApiDetail + id
         await axios.get(address)
             .then(function (response) {
                 getArticleMain(response.data.data)

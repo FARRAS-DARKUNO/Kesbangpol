@@ -1,7 +1,4 @@
 import { ChakraProvider } from '@chakra-ui/react'
-import { Provider } from 'react-redux';
-import { Store } from './redux/store';
-import ReactDOM from "react-dom/client";
 import {
   BrowserRouter,
   Routes,
@@ -28,30 +25,30 @@ import Footer from './Componen/footer/footer';
 
 function App() {
   return (
-    <Provider store={Store}>
-      <ChakraProvider>
-        <div className='all'>
 
-          <MenuDraf />
-          {/* <Header /> */}
-          <Routes>
-            <Route path="/" exact element={<MainPage />} />
-            <Route path="/news/:id" element={<NewsPage />} />
-            <Route path="/article/:id" element={<ArticlePage />} />
-            <Route path="/news" element={<ListNewsPage />} />
-            <Route path="/article" element={<ListArticlePage />} />
-            <Route path="/:id" element={<StatisPage />} />
-            <Route path="/image-gallery" element={<FotoPage />} />
-            <Route path="/video-gallery" element={<VideoPage />} />
-            <Route path="/image-gallery/:slug" element={<ContainFotoPage />} />
-            <Route path="/video-gallery/:slug" element={<ContainVideoPage />} />
-            <Route path="/dokumen" element={<DocumentPage />} />
-            <Route path="/dokumen/:slug" element={<ShowDocumentPage />} />
-          </Routes>
-          <Footer />
-        </div>
-      </ChakraProvider>
-    </Provider>
+    <ChakraProvider>
+      <div className='all'>
+
+        <MenuDraf />
+        {/* <Header /> */}
+        <Routes>
+          <Route path="/" exact element={<MainPage />} />
+          <Route path="/news/:id" element={<NewsPage />} />
+          <Route path="/article/:id" element={<ArticlePage />} />
+          <Route path="/news" element={<ListNewsPage />} />
+          <Route path="/article" element={<ListArticlePage />} />
+          <Route path="/:id" element={<StatisPage />} />
+          <Route path="/image-gallery" element={<FotoPage />} />
+          <Route path="/video-gallery" element={<VideoPage />} />
+          <Route path="/image-gallery/:slug" element={<ContainFotoPage />} />
+          <Route path="/video-gallery/:slug" element={<ContainVideoPage />} />
+          <Route path="/dokumen" element={<DocumentPage />} />
+          <Route path="/dokumen/:slug" element={<ShowDocumentPage />} />
+        </Routes>
+        <Footer />
+      </div>
+    </ChakraProvider>
+
   );
 }
 
