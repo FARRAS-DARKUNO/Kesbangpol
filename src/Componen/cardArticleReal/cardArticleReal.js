@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 import '../cardArticle/cardArticle.css'
+import { articleApi } from "../../util/api";
 
 
 const CardArticleReal = () => {
@@ -13,7 +14,7 @@ const CardArticleReal = () => {
 
 
     useEffect(() => {
-        axios.get("http://adminmesuji.embuncode.com/api/article?instansi_id=2")
+        axios.get(articleApi)
             .then(function (response) {
                 var temp = []
                 for (let i = 0; i < 4; i += 1) {

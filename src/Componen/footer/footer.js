@@ -7,6 +7,7 @@ import axios from "axios";
 import { MdEmail, MdLocalPhone, MdFacebook } from 'react-icons/md'
 import { FaYoutube } from 'react-icons/fa'
 import { RiInstagramFill } from 'react-icons/ri'
+import { instansi } from "../../util/api";
 
 
 const Footer = () => {
@@ -16,7 +17,7 @@ const Footer = () => {
     const [FooterData, setFooterData] = useState([]);
     useEffect(() => {
         axios
-            .get("http://adminmesuji.embuncode.com/api/instansi/detail/20")
+            .get(instansi)
             .then(function (footer) {
                 setFooterData(footer.data.data);
                 console.log("console header: " + footer.data.data);

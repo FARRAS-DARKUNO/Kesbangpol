@@ -19,6 +19,7 @@ import { BiMenu } from "react-icons/bi";
 import './menuDraf.css';
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { menus, instansi, statisList } from "../../util/api";
 
 const MenuDraf = () => {
 
@@ -28,7 +29,7 @@ const MenuDraf = () => {
     const [detail, setDetail] = useState(null)
 
     const setMenuList = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/menus?instansi_id=2")
+        await axios.get(menus)
             .then(function (response) {
                 getMenuList(response.data)
             })
@@ -37,7 +38,7 @@ const MenuDraf = () => {
             })
     }
     const setHalamanStatis = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/static-page?instansi_id=2")
+        await axios.get(statisList)
             .then(function (response) {
                 getStatisMenu(response.data.data.items)
                 // console.log('masuk menu');
@@ -49,7 +50,7 @@ const MenuDraf = () => {
             })
     }
     const setDetailHead = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/instansi/detail/20")
+        await axios.get(instansi)
             .then(function (response) {
                 setDetail(response.data)
                 // console.log(response.data);

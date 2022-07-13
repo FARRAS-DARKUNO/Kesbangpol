@@ -3,7 +3,7 @@ import { Card, Button } from "react-bootstrap";
 import axios from "axios";
 
 import './cardAparat.css'
-
+import { instansi } from "../../util/api";
 
 const CardAparat = () => {
 
@@ -12,7 +12,7 @@ const CardAparat = () => {
 
 
     useEffect(() => {
-        axios.get("http://adminmesuji.embuncode.com/api/instansi/detail/2")
+        axios.get(instansi)
             .then(function (response) {
 
                 getNewsCard(response.data.data)

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import './cardArticle.css'
 
-
+import { newsList } from "../../util/api";
 const CardArticle = () => {
 
     const [newsCard, getNewsCard] = useState(null)
@@ -13,7 +13,7 @@ const CardArticle = () => {
 
 
     useEffect(() => {
-        axios.get("http://adminmesuji.embuncode.com/api/news?instansi_id=2")
+        axios.get(newsList)
             .then(function (response) {
                 var temp = []
                 for (let i = 0; i < 4; i += 1) {
