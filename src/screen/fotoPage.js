@@ -5,13 +5,14 @@ import { Card, Button } from "react-bootstrap";
 import { FaAngleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Loading from "../Componen/loading/loading";
+import { imageList, videoList } from "../util/api";
 
 const FotoPage = () => {
     const [recomendation, getRecomentdation] = useState(null)
     const [contain, getContain] = useState(null)
 
     const setContain = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/image-gallery?instansi_id=2")
+        await axios.get(imageList)
             .then(function (response) {
                 getContain(response.data.data.data)
                 // console.log('masuk')
@@ -24,7 +25,7 @@ const FotoPage = () => {
     }
 
     const setRecomendation = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/video-gallery?instansi_id=2")
+        await axios.get(videoList)
             .then(function (response) {
                 getRecomentdation(response.data.data.data)
                 console.log('masuk baget')

@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import Loading from "../Componen/loading/loading";
 
 import '../style/newsPage.css'
+import { articleApi, articlePerPage, categoryListArticle, articleWithCategory } from "../util/api";
 
 const ListArticlePage = () => {
 
@@ -38,7 +39,7 @@ const ListArticlePage = () => {
         // console.log(categoryList)
         setNewChardWithCategory(null)
         setDataPerpage(null)
-        axios.get("http://adminmesuji.embuncode.com/api/article?instansi_id=2&page=" + page + "&per_page=6")
+        axios.get(articlePerPage + page + "&per_page=6")
             .then(function (response) {
                 setDataPerpage(response.data.data)
                 console.log(response.data.data);
@@ -48,7 +49,7 @@ const ListArticlePage = () => {
                 console.log(error);
             })
 
-        axios.get("http://adminmesuji.embuncode.com/api/article?instansi_id=2")
+        axios.get(articleApi)
             .then(function (response) {
                 getNewsCard(response.data.data.data)
                 // console.log(response.data.data.data[0]);
@@ -58,7 +59,7 @@ const ListArticlePage = () => {
                 console.log(error);
             })
 
-        axios.get("http://adminmesuji.embuncode.com/api/article/categories/2")
+        axios.get(categoryListArticle)
             .then(function (response) {
                 setCategory(response.data.data)
                 // console.log('masuk nich 1')
@@ -78,7 +79,7 @@ const ListArticlePage = () => {
     const getNewCategory = (slug) => {
         console.log('ini mengecek apakah uada aada category list nya')
         console.log(slug)
-        axios.get("http://adminmesuji.embuncode.com/api/article?instansi_id=2&slug=" + slug)
+        axios.get(articleWithCategory + slug)
             .then(function (response) {
                 setNewChardWithCategory(response.data.data.data)
                 console.log('category list sama dengan null')

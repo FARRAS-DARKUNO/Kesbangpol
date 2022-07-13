@@ -3,6 +3,7 @@ import axios from "axios"
 import '../style/statisPage.css'
 import { useParams } from "react-router"
 import Loading from "../Componen/loading/loading";
+import { statisPage } from "../util/api";
 
 const StatisPage = () => {
     const [statis, getStatis] = useState(null)
@@ -12,7 +13,7 @@ const StatisPage = () => {
     console.log('HALLO STATIS')
 
     const setStatisDAta = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/static-page/" + id)
+        await axios.get(statisPage + id)
             .then(function (response) {
                 getStatis(response.data.data)
                 console.log('masuk')

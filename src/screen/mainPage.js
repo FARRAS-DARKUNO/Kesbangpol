@@ -5,6 +5,7 @@ import axios from "axios";
 import { BiChevronsRight } from 'react-icons/bi'
 import { FaAngleRight } from 'react-icons/fa'
 import { Link } from "react-router-dom";
+import { documentList, newsList, instansi } from "../util/api";
 
 import '../style/mainPage.css'
 
@@ -28,7 +29,7 @@ const MainPage = () => {
 
 
     const setContain = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/dokumen?instansi_id=15")
+        await axios.get(documentList)
             .then(function (response) {
                 var temp = []
                 for (let i = 0; i < 3; i += 1) {
@@ -48,7 +49,7 @@ const MainPage = () => {
     }
 
     const setNews = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/news?instansi_id=2")
+        await axios.get(newsList)
             .then(function (response) {
                 var temp = []
                 for (let i = 0; i < 3; i += 1) {
@@ -67,7 +68,7 @@ const MainPage = () => {
 
     }
     const setDetail = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/instansi/detail/20")
+        await axios.get(instansi)
             .then(function (response) {
                 console.log('tentang')
 

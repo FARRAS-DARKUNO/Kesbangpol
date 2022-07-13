@@ -16,6 +16,7 @@ import {
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Loading from "../Componen/loading/loading";
+import { containImage, imageList } from "../util/api";
 
 const ContainFotoPage = () => {
     const [recomendation, getRecomentdation] = useState(null)
@@ -28,7 +29,7 @@ const ContainFotoPage = () => {
 
 
     const setContain = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/image-gallery/" + slug)
+        await axios.get(containImage + slug)
             .then(function (response) {
                 getContain(response.data.data)
                 console.log('masuk')
@@ -41,7 +42,7 @@ const ContainFotoPage = () => {
     }
 
     const setRecomendation = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/image-gallery?instansi_id=2")
+        await axios.get(imageList)
             .then(function (response) {
                 getRecomentdation(response.data.data.data)
                 // console.log('masuk baget')

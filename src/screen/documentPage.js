@@ -5,13 +5,14 @@ import { Link } from "react-router-dom";
 
 import '../style/documentPage.css'
 import Loading from "../Componen/loading/loading";
+import { documentList } from "../util/api";
 
 const DocumentPage = () => {
 
     const [contain, getContain] = useState(null)
 
     const setContain = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/dokumen?instansi_id=15")
+        await axios.get(documentList)
             .then(function (response) {
                 getContain(response.data.data.data)
                 console.log('masuk aja 15')

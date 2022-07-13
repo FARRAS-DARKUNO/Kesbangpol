@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import Loading from "../Componen/loading/loading";
 
 import '../style/newsPage.css'
+import { newsPerPage, newsList, categoryListNews, newsWithCategor } from "../util/api";
 
 const ListNewsPage = () => {
 
@@ -34,7 +35,7 @@ const ListNewsPage = () => {
     useEffect(() => {
         setNewChardWithCategory(null)
         setDataPerpage(null)
-        axios.get("http://adminmesuji.embuncode.com/api/news?instansi_id=2&page=" + page + "&per_page=6")
+        axios.get(newsPerPage + page + "&per_page=6")
             .then(function (response) {
                 setDataPerpage(response.data.data)
                 console.log(response.data.data);
@@ -44,7 +45,7 @@ const ListNewsPage = () => {
                 console.log(error);
             })
 
-        axios.get("http://adminmesuji.embuncode.com/api/news?instansi_id=2")
+        axios.get(newsList)
             .then(function (response) {
                 getNewsCard(response.data.data.data)
                 console.log(response.data.data.data[0]);
@@ -53,7 +54,7 @@ const ListNewsPage = () => {
                 // handle error
                 console.log(error);
             })
-        axios.get("http://adminmesuji.embuncode.com/api/news/categories/2")
+        axios.get(categoryListNews)
             .then(function (response) {
                 setCategory(response.data.data)
                 // console.log('masuk nich 1')
@@ -72,7 +73,7 @@ const ListNewsPage = () => {
     const getNewCategory = (slug) => {
         console.log('ini mengecek apakah uada aada category list nya')
         console.log(slug)
-        axios.get("http://adminmesuji.embuncode.com/api/news?instansi_id=2&slug=" + slug)
+        axios.get(newsWithCategor + slug)
             .then(function (response) {
                 setNewChardWithCategory(response.data.data.data)
                 console.log('category list sama dengan null')

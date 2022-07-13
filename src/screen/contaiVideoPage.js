@@ -17,7 +17,7 @@ import {
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Loading from "../Componen/loading/loading";
-
+import { containVideo, videoList } from "../util/api";
 
 
 const ContainVideoPage = () => {
@@ -34,7 +34,7 @@ const ContainVideoPage = () => {
 
 
     const setContain = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/video-gallery/" + slug)
+        await axios.get(containVideo + slug)
             .then(function (response) {
                 getContain(response.data.data)
                 // console.log('masuk')
@@ -47,7 +47,7 @@ const ContainVideoPage = () => {
     }
 
     const setRecomendation = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/video-gallery?instansi_id=2")
+        await axios.get(videoList)
             .then(function (response) {
                 getRecomentdation(response.data.data.data)
                 // console.log('masuk baget')
@@ -60,10 +60,11 @@ const ContainVideoPage = () => {
     }
 
     useEffect(() => {
+        getContain(null)
         setContain()
         setRecomendation()
         return () => {
-            getRecomentdation(null)
+            getContain(null)
         }
     }, [slug])
 

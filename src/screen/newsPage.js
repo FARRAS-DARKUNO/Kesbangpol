@@ -6,6 +6,7 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { FaAngleRight } from 'react-icons/fa'
 import Loading from "../Componen/loading/loading";
+import { newsList, newsApiDetail } from "../util/api";
 
 import '../style/articlePage.css'
 
@@ -72,7 +73,7 @@ const NewsPage = () => {
 
 
     const getRecomendation = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/news?instansi_id=2")
+        await axios.get(newsList)
             .then(function (response) {
                 getNewsCard(response.data.data.data)
                 // console.log(response.data.data.data[0]);
@@ -85,7 +86,7 @@ const NewsPage = () => {
     }
 
     const getArticleDetail = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/news/" + id)
+        await axios.get(newsApiDetail + id)
             .then(function (response) {
                 getArticleMain(response.data.data)
                 // console.log('masuk')

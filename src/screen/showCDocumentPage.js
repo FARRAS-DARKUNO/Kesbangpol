@@ -4,6 +4,7 @@ import axios from "axios";
 import { useParams } from "react-router";
 import '../style/showDocumentPage.css'
 import Loading from "../Componen/loading/loading";
+import { documentApiDetail } from "../util/api";
 
 const ShowDocumentPage = () => {
 
@@ -12,7 +13,7 @@ const ShowDocumentPage = () => {
     const [contain, getContain] = useState(null)
 
     const setContain = async () => {
-        await axios.get("http://adminmesuji.embuncode.com/api/dokumen/" + slug)
+        await axios.get(documentApiDetail + slug)
             .then(function (response) {
                 getContain(response.data.data[0])
                 console.log('masuk aja BANGEEET')
