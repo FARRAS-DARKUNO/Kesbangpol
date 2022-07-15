@@ -37,7 +37,8 @@
     display: flex;
     color: aliceblue;
     height: 200px;
-    font-family: Helvetica
+    font-family: Helvetica;
+    text-align: center;
 }
 
 .galeri-card-foto {
