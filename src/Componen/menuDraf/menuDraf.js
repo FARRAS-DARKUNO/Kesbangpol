@@ -124,11 +124,30 @@ const MenuDraf = () => {
                                                     <MenuList>
                                                         {
                                                             placement.children.map((listDown) => (
-                                                                <Link to={'' + listDown.url}>
-                                                                    <MenuItem className='text-in-class'>{listDown.name}</MenuItem>
-                                                                </Link>
+                                                                listDown.url != null ?
+                                                                    <Link to={'' + listDown.url}>
+                                                                        <MenuItem className='text-in-class'>{listDown.name}</MenuItem>
+                                                                    </Link>
+                                                                    :
+                                                                    <>
+                                                                        <div>
+                                                                            <MenuList className='text-in-class'>
+                                                                                {listDown.name}
+                                                                            </MenuList>
+                                                                        </div>
+                                                                        {
+                                                                            listDown.children.length > 0 ?
+                                                                                listDown.children.map((listDown2) => (
+                                                                                    <Link to={'' + listDown2.url}>
+                                                                                        <MenuItem className='text-in-class'>{listDown2.name}</MenuItem>
+                                                                                    </Link>
+
+                                                                                )) : null
+                                                                        }
+                                                                    </>
 
                                                             ))
+
                                                         }
                                                     </MenuList> : null
                                             }
@@ -165,7 +184,7 @@ const MenuDraf = () => {
                     <Drawer placement={'right'} onClose={onClose} isOpen={isOpen}>
                         <DrawerOverlay />
                         <DrawerContent>
-                            <DrawerHeader borderBottomWidth='1px'>menu</DrawerHeader>
+                            <DrawerHeader borderBottomWidth='1px'>Menu</DrawerHeader>
                             <DrawerBody>
                                 {listMenus != null ? listMenus.map((placement) => (
                                     <div className="button">
@@ -214,11 +233,30 @@ const MenuDraf = () => {
                                                             <MenuList>
                                                                 {
                                                                     placement.children.map((listDown) => (
-                                                                        <Link to={'' + listDown.url}>
-                                                                            <MenuItem className='text-in-class'>{listDown.name}</MenuItem>
-                                                                        </Link>
+                                                                        listDown.url != null ?
+                                                                            <Link to={'' + listDown.url}>
+                                                                                <MenuItem className='text-in-class'>{listDown.name}</MenuItem>
+                                                                            </Link>
+                                                                            :
+                                                                            <>
+                                                                                <div>
+                                                                                    <MenuList className='text-in-class'>
+                                                                                        {listDown.name}
+                                                                                    </MenuList>
+                                                                                </div>
+                                                                                {
+                                                                                    listDown.children.length > 0 ?
+                                                                                        listDown.children.map((listDown2) => (
+                                                                                            <Link to={'' + listDown2.url}>
+                                                                                                <MenuItem className='text-in-class'>{listDown2.name}</MenuItem>
+                                                                                            </Link>
+
+                                                                                        )) : null
+                                                                                }
+                                                                            </>
 
                                                                     ))
+
                                                                 }
                                                             </MenuList> : null
                                                     }
