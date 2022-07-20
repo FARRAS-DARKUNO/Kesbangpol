@@ -22,8 +22,10 @@ import ShowDocumentPage from './screen/showCDocumentPage';
 import MenuDraf from './Componen/menuDraf/menuDraf';
 import Header from './Componen/header/header';
 import Footer from './Componen/footer/footer';
+import { lazy } from 'react';
 
 function App() {
+
   return (
 
     <ChakraProvider>
