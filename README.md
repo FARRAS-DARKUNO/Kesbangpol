@@ -27,4 +27,32 @@ The following are the steps in doing it:
  ```
  sudo npm build
  ```   
-7. 
+7. then run the build folder with the command
+```
+ pm2 serve build/ nomor_of_port --name "like name of project" --spa
+```   
+8. Make block serve
+```
+ cd /etc/nginx/conf.d/
+```   
+9. Running block server
+- command to copy an existing block server into a new block server
+```
+ sudo cp name__of_server_blok name_new_server_blok
+``` 
+- command to create a new block server manually
+```
+ sudo nano name_of_server_blok
+``` 
+- command to rename block server
+```
+ sudo mv name_of_server_blok_old name_of_server_blok_new
+```
+- to reload on the block server
+```
+ sudo systemctl reload nginx
+```
+- to restart the block server
+```
+ sudo systemctl restart nginx
+```
